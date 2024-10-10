@@ -30,9 +30,7 @@ function App() {
 
   // Lazy load your components
   const HomePage = lazy(() => import("./pages/home/HomePage"));
-  const JoinResearcherPage = lazy(
-    () => import("./pages/join/JoinResearcherPage")
-  );
+  const JoinPage = lazy(() => import("./pages/join/JoinPage"));
   const MembersPage = lazy(() => import("./pages/members/MembersPage"));
   const NewsPage = lazy(() => import("./pages/news/NewsPage"));
   const ResearchPage = lazy(() => import("./pages/research/ResearchPage"));
@@ -45,7 +43,7 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/join" element={<JoinResearcherPage />} />
+            <Route path="/join" element={<JoinPage />} />
             <Route path="/members" element={<MembersPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/research" element={<ResearchPage />} />
