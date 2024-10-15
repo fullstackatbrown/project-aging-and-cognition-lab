@@ -1,73 +1,57 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { mockHomeData } from './mock/example_mock_data';
-
-interface APIObject {
-  object: DataObject;
-}
-
-interface DataObject {
-  slug: string;   
-  title: string;   
-  metadata: Metadata;
-}
-
-interface Metadata {
-  heading: string; 
-  subheading: string; 
-  image: Image;
-}
-
-interface Image {
-  url: string;     
-  imgix_url: string;
-}
-
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import React, { lazy, Suspense } from "react";
 
 function App() {
-
-  const [data, setData] = useState<APIObject>();
-
-  async function fetchMockData() {
-    return mockHomeData;
+  function Nav() {
+    return (
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/join">Join</a>
+          </li>
+          <li>
+            <a href="/members">Members</a>
+          </li>
+          <li>
+            <a href="/news">News</a>
+          </li>
+          <li>
+            <a href="/research">Research</a>
+          </li>
+        </ul>
+      </nav>
+    );
   }
 
-  async function fetchData() {
-    //this would be the actuall call to the API where we input our query and get the response back.
-  }
-
-  useEffect(() => {
-    //here we are mocking the API call
-    fetchMockData()
-    .then((jsonData) => {
-      setData(jsonData);
-    })
-    .catch((error) => {
-      console.log('Error fetching the data:', error);
-      //error handle on the front end
-    })
-  }, [])
+  // Lazy load your components
+  const HomePage = lazy(() => import("./pages/home/HomePage"));
+  const JoinPage = lazy(() => import("./pages/join/JoinPage"));
+  const MembersPage = lazy(() => import("./pages/members/MembersPage"));
+  const NewsPage = lazy(() => import("./pages/news/NewsPage"));
+  const ResearchPage = lazy(() => import("./pages/research/ResearchPage"));
+  // const NotFound = lazy(() => import('./NotFound')); // Import NotFound page if we implement one
 
   return (
-    <div className="App">
+    <Router>
       <div>
-        <h1>This is our super cool website lol</h1>
+        <Nav />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/join" element={<JoinPage />} />
+            <Route path="/members" element={<MembersPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/research" element={<ResearchPage />} />
+            {/* <Route path="*" element={<NotFound />} /> Fallback route */}
+          </Routes>
+        </Suspense>
       </div>
-      <div>
-        {data ? (
-            <>
-              <h2>{data.object.metadata.heading}</h2>
-              <h3>{data.object.metadata.subheading}</h3>
-              {data.object.metadata.image.url && (
-                <img src={data.object.metadata.image.url} alt={data.object.metadata.heading} />
-              )}
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
-      </div>
-    </div>
+    </Router>
   );
 }
 
