@@ -1,0 +1,37 @@
+{
+  "object": {
+    "slug": "news",
+    "title": "News",
+    "metadata": {
+      "heading": "News",
+      "image": {
+        "url": "https://cdn.cosmicjs.com/b60dadc0-81dd-11ef-bf3c-e1a053e2b56b-Screenshot-2024-10-03-at-7.17.41PM.png",
+        "imgix_url": "https://imgix.cosmicjs.com/b60dadc0-81dd-11ef-bf3c-e1a053e2b56b-Screenshot-2024-10-03-at-7.17.41PM.png"
+      }
+    }
+  },
+  "articles": [
+    {
+      "headline": "Headline 1",
+      "description": "Description for Headline 1",
+      "date": {
+        "day": "09",
+        "month": "10",
+        "year": "2024"
+      },
+      "picture": "https://example.com/image1.jpg",
+      "link": "https://example.com/article1"
+    },
+    {
+      "headline": "Headline 2",
+      "description": "Description for Headline 2",
+      "date": {
+        "day": "08",
+        "month": "10",
+        "year": "2024"
+      },
+      "picture": "src/pages/news/gray_square.png",
+      "link": "https://example.com/article2"
+    }
+  ]
+}
