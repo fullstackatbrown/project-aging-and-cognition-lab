@@ -1,0 +1,28 @@
+.highlights-section,
+.more-section {
+  margin-bottom: 20px;
+}
+
+.highlight-box,
+.more-box {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.highlight-image img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.highlight-content h4,
+.more-box h4 {
+  margin: 0;
+}
+
+.highlight-content p,
+.more-box p {
+  margin: 5px 0 0;
+}
