@@ -56,7 +56,7 @@ function NewsPage() {
       <div>
         {data ? (
           <>
-            <h2>{data.object.metadata.heading}</h2>
+            {/* <h2>{data.object.metadata.heading}</h2> */}
             <div className="articles-list">
               {data.articles.map((article, index) => (
                 <Article
