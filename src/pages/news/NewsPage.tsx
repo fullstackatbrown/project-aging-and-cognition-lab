@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './news.css';
 import './article.css';
 import mockNewsData from '../../mock/mock_news_data.json';
 import Article from '../../components/Article';
@@ -49,15 +48,15 @@ function NewsPage() {
   }, []);
 
   return (
-    <div className="news">
+    <div className="flex flex-col my-10 mx-14">
       <div>
-        <h1 className="news-header">News</h1>
+        <h1 className="text-4xl">News</h1>
       </div>
       <div>
         {data ? (
           <>
             {/* <h2>{data.object.metadata.heading}</h2> */}
-            <div className="articles-list">
+            <div className="flex flex-col space-y-10 my-5 items-center">
               {data.articles.map((article, index) => (
                 <Article
                   key={index}

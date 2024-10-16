@@ -3,30 +3,29 @@
     background-color: #E5E4E2;
     border-radius: 8px;
     padding: 20px;
-    margin: 40px 0;
     width: 100%; 
     text-align: left;
     height: 40vh; 
     max-width: 2000px;
+    justify-content: flex-start;
   }
   
   .article h2 {
-    font-size: 1.5rem;
-    color: #333333;
+    font-size: 2rem;
     margin-bottom: 10px;
+  }
+
+  .article h3{
+    font-size: 1.25rem; 
   }
   
   .article p {
-    font-size: 1rem;
-    color: #666666;
     line-height: 1.5;
   }
-  
-  .article img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin: 10px 0;
+
+  .article img{
+    width: 15rem;
+    height: 15rem; 
   }
   
   .article a {

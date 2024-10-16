@@ -13,24 +13,24 @@
   "articles": [
     {
       "headline": "Headline 1",
-      "description": "Description for Headline 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
       "date": {
         "day": "09",
-        "month": "10",
+        "month": "October",
         "year": "2024"
       },
-      "picture": "https://example.com/image1.jpg",
+      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
       "link": "https://example.com/article1"
     },
     {
       "headline": "Headline 2",
-      "description": "Description for Headline 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
       "date": {
         "day": "08",
-        "month": "10",
+        "month": "October",
         "year": "2024"
       },
-      "picture": "src/pages/news/gray_square.png",
+      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
       "link": "https://example.com/article2"
     }
   ]

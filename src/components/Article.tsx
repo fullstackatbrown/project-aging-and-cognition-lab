@@ -15,12 +15,18 @@ interface ArticleProps {
 
 export default function Article({ headline, description, date, picture, link }: ArticleProps) {
   return (
-    <div className="article">
-      <h2>{headline}</h2>
-      <p>{description}</p>
-      <img src={picture} alt={headline} />
-      <p>{`${date.day}/${date.month}/${date.year}`}</p>
-      {/* <a href={link} target="_blank" rel="noopener noreferrer">Read more</a> */}
+    <div className="article flex flex-row mx-10 justify-start">
+      <div className="flex flex-col m-auto mx-5">
+        <p className="text-4xl font-bold">{date.day}</p>
+        <p>{date.month}</p>
+        <p>{date.year}</p>
+      </div>
+      <img src={picture} alt={headline} className="flex m-auto size-40 mx-0"/>
+
+      <div className="flex flex-col m-auto mx-10 space-y-5">
+        <h2>{headline}</h2>
+        <h3>{description}</h3>
+      </div>
     </div>
   );
 }
