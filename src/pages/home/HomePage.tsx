@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-import Navbar from '../../components/Navbar'
-import Publication from '../../components/Publication'
-=======
 import React from "react";
 import { useEffect, useState } from "react";
 import { mockHomeData } from "../../mock/example_mock_data";
+import Publication from "../../components/Publication";
 
 interface APIObject {
   object: DataObject;
@@ -27,7 +23,6 @@ interface Image {
   url: string;
   imgix_url: string;
 }
->>>>>>> 9a62230b6818c09b383ca30b6401cb666b3562f3
 
 export default function HomePage() {
   const [data, setData] = useState<APIObject>();
@@ -53,27 +48,6 @@ export default function HomePage() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <>
-      <Navbar />
-      <div>
-        <Publication
-          title="Cognitive Decline in Aging: A Comprehensive Review"
-          authors="John Doe, Jane Smith"
-          journal="Journal of Cognitive Science"
-          date="2023"
-        />
-        <Publication
-          title="Effects of Sleep on Memory Retention in Older Adults"
-          authors="Alice Johnson, Michael Lee"
-          journal="Aging & Cognition Research"
-          date="2022"
-        />
-      </div>
-
-    </>
-  )
-=======
     <div className="App">
       <div>
         <h1>This is our super cool website lol</h1>
@@ -89,6 +63,10 @@ export default function HomePage() {
                 alt={data.object.metadata.heading}
               />
             )}
+            <Publication authors="Gordon Jin"
+              title="The effect of sleep on aging"
+              date="10/16/2024"
+              journal="Nature"></Publication>
           </>
         ) : (
           <p>Loading...</p>
@@ -96,5 +74,4 @@ export default function HomePage() {
       </div>
     </div>
   );
->>>>>>> 9a62230b6818c09b383ca30b6401cb666b3562f3
 }
