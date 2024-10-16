@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { mockHomeData } from "../../mock/example_mock_data";
+import HomeResearchPrev from "../../components/HomeResearchPrev";
+import "./HomePage.css"
 
 interface APIObject {
   object: DataObject;
@@ -15,6 +17,7 @@ interface DataObject {
 interface Metadata {
   heading: string;
   subheading: string;
+  introduction: string;
   image: Image;
 }
 
@@ -56,6 +59,7 @@ export default function HomePage() {
           <>
             <h2>{data.object.metadata.heading}</h2>
             <h3>{data.object.metadata.subheading}</h3>
+            <h3>{data.object.metadata.introduction}</h3>
             {data.object.metadata.image.url && (
               <img
                 src={data.object.metadata.image.url}
@@ -66,6 +70,34 @@ export default function HomePage() {
         ) : (
           <p>Loading...</p>
         )}
+      </div>
+      <div className="parent">
+        <h2>Research</h2>
+        <div className="child">
+          <HomeResearchPrev
+          title="Research 1"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+
+        <div className="child">
+          <HomeResearchPrev
+          title="Research 2"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+
+        <div className="child">
+          <HomeResearchPrev
+          title="Research 3"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+
+
       </div>
     </div>
   );
