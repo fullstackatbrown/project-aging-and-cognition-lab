@@ -3,14 +3,18 @@ export const mockResearchData = {
     slug: "researchpage",
     title: "researchPage",
     metadata: {
-      heading: "Topic One",
-      blurb: "lorem ipsum dolor sit amet",
-      highlight_title: "title1",
-      highlight_info: "lorem ipsum dolor sit amet",
-      more_title1: "title",
-      more_info1: "lorem ipsum dolor sit amet",
-      more_title2: "title",
-      more_info2: "lorem ipsum dolor sit amet",
+      heading: "Current Research Topics",
+      blurb:
+        "Explore the ongoing research initiatives at our Aging & Cognition Lab.",
+      highlight_title: "Highlights",
+      highlight_info:
+        "Discover key findings and significant contributions from our research.",
+      more_title1: "Further Reading on Topic 1",
+      more_info1:
+        "In-depth analysis of our findings and methodologies in Topic 1.",
+      more_title2: "Further Reading on Topic 2",
+      more_info2: "Comprehensive insights into Topic 2 and its implications.",
+      // Add more titles and blurbs as necessary
     },
   },
 };
