@@ -15,7 +15,7 @@ export default function Highlights({
       <div className="highlight-box">
         {/* Placeholder for the image */}
         <div className="highlight-image">
-          <img src="/path/to/image.jpg" alt="Highlight" />
+          <img src="../images/placeholder.jpg" alt="Highlight" />
         </div>
         <div className="highlight-content">
           <h4>{highlightTitle}</h4>
