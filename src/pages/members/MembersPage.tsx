@@ -1,4 +1,5 @@
 import React from 'react'
+import {mockLabMembersData } from "../../mock/lab_members_mock_data";
 
 
 export default function MembersPage() {
