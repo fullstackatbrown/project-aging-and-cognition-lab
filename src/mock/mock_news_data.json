@@ -1,0 +1,37 @@
+{
+  "object": {
+    "slug": "news",
+    "title": "News",
+    "metadata": {
+      "heading": "News",
+      "image": {
+        "url": "https://cdn.cosmicjs.com/b60dadc0-81dd-11ef-bf3c-e1a053e2b56b-Screenshot-2024-10-03-at-7.17.41PM.png",
+        "imgix_url": "https://imgix.cosmicjs.com/b60dadc0-81dd-11ef-bf3c-e1a053e2b56b-Screenshot-2024-10-03-at-7.17.41PM.png"
+      }
+    }
+  },
+  "articles": [
+    {
+      "headline": "Headline 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "date": {
+        "day": "09",
+        "month": "October",
+        "year": "2024"
+      },
+      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "link": "https://example.com/article1"
+    },
+    {
+      "headline": "Headline 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "date": {
+        "day": "08",
+        "month": "October",
+        "year": "2024"
+      },
+      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "link": "https://example.com/article2"
+    }
+  ]
+}
