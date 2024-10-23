@@ -32,7 +32,7 @@ export default function HomePage() {
   }
 
   async function fetchData() {
-    //this would be the actuall call to the API where we input our query and get the response back.
+    //this would be the actual call to the API where we input our query and get the response back.
   }
 
   useEffect(() => {
@@ -71,6 +71,23 @@ export default function HomePage() {
         ) : (
           <p>Loading...</p>
         )}
+      </div>
+
+      {/* Section for Contacts & Info */}
+      <div className="content-sections">
+
+        <section className="contacts">
+          <h2>Contacts & Info</h2>
+          <p> We are located within the Brown University Department of Cognitive, Linguistics &
+            Psychological Sciences (CLPS)</p>
+          <p> Metcalf Research Building </p>
+          <p>190 Thayer Street</p>
+          <p>Providence, RI 02912</p>
+          <p>Call: (401) 863-3347</p>
+
+          <p>Email: CLPS@brown.edu, agingandcognitionlab@brown.edu</p>
+
+        </section>
       </div>
     </div>
   );
