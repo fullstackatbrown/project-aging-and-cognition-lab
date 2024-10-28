@@ -1,30 +1,10 @@
-interface APIObject {
-  object: DataObject[];
-}
-
-interface DataObject {
-  slug: string;
-  title: string;
-  metadata: Metadata;
-}
-
-interface Metadata {
-  description: string;
-  publications: Publication[];
-}
-
-interface Publication {
-  slug: string;
-  title: string;
-  metadata: PublicationMetadata;
-}
-
-interface PublicationMetadata {
-  title: string;
-  description: string;
-  image: string;
-  isHighlight: boolean;
-}
+import {
+  APIObject,
+  DataObject,
+  Metadata,
+  Publication,
+  PublicationMetadata,
+} from "../pages/research/Interfaces";
 
 export const mockResearchData: APIObject = {
   object: [
@@ -42,6 +22,7 @@ export const mockResearchData: APIObject = {
               description: "Highlighted Description 1.",
               image: "1.jpg",
               isHighlight: true,
+              link: "https://example.com/publication-1",
             },
           },
           {
@@ -52,6 +33,7 @@ export const mockResearchData: APIObject = {
               description: "Description 1.",
               image: "2.jpg",
               isHighlight: false,
+              link: "https://example.com/publication-2",
             },
           },
           {
@@ -62,6 +44,7 @@ export const mockResearchData: APIObject = {
               description: "Description 2.",
               image: "3.jpg",
               isHighlight: false,
+              link: "https://example.com/publication-3",
             },
           },
         ],
@@ -81,6 +64,7 @@ export const mockResearchData: APIObject = {
               description: "Highlighted Description 2.",
               image: "4.jpg",
               isHighlight: true,
+              link: "https://example.com/publication-4",
             },
           },
           {
@@ -91,6 +75,7 @@ export const mockResearchData: APIObject = {
               description: "Description 3.",
               image: "5.jpg",
               isHighlight: false,
+              link: "https://example.com/publication-5",
             },
           },
         ],
@@ -110,6 +95,7 @@ export const mockResearchData: APIObject = {
               description: "Highlighted Description 3.",
               image: "6.jpg",
               isHighlight: true,
+              link: "https://example.com/publication-6",
             },
           },
         ],
