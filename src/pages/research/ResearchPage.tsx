@@ -1,35 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { mockResearchData } from "../../mock/research_mock";
 import ResearchTopic from "./components/ResearchTopic";
 import Highlights from "./components/Highlights";
 import More from "./components/More";
+import { APIObject } from "./Interfaces";
 
-interface APIObject {
-  object: DataObject;
-}
-
-interface DataObject {
-  slug: string;
-  title: string;
-  metadata: Metadata;
-}
-
-interface Metadata {
-  heading: string;
-  blurb: string;
-  highlight_title: string;
-  highlight_info: string;
-  more_title1: string;
-  more_info1: string;
-  more_title2: string;
-  more_info2: string;
+// Move fetchMockData outside component and above it
+async function fetchMockData(): Promise<APIObject> {
+  return mockResearchData;
 }
 
 export default function ResearchPage() {
   const [data, setData] = useState<APIObject | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedTopic, setSelectedTopic] = useState("Topic One");
+
+  // Create refs for each topic
+  const topicRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,9 +32,9 @@ export default function ResearchPage() {
     fetchData();
   }, []);
 
-  async function fetchMockData(): Promise<APIObject> {
-    return mockResearchData;
-  }
+  const scrollToTopic = (index: number) => {
+    topicRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
+  };
 
   if (loading) return <div className="p-8">Loading...</div>;
   if (error) return <div className="p-8 text-red-500">{error}</div>;
@@ -55,57 +42,65 @@ export default function ResearchPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Research & Publications</h1>
+      <h1 className="text-3xl font-bold mb-4">Research & Publications</h1>
 
       <div className="flex gap-8">
-        {/* Sidebar Navigation? */}
-        <div className="w-64 flex-shrink-0">
+        {/* Sidebar Navigation */}
+        <div className="w-64 h-screen sticky top-16 bg-gray-50 shadow-md overflow-y-auto">
           <h2 className="text-xl font-semibold mb-4">Current Research</h2>
           <div className="space-y-3">
-            {["Topic One", "Topic Two", "Topic Three"].map((topic) => (
+            {data.object.map((topic, index) => (
               <button
-                key={topic}
-                onClick={() => setSelectedTopic(topic)}
-                className={`block text-lg hover:underline ${
-                  selectedTopic === topic ? "font-semibold" : ""
-                }`}
+                key={topic.slug}
+                onClick={() => scrollToTopic(index)} // Scroll to the respective topic
+                className="block text-lg hover:underline"
               >
-                {topic}
+                {topic.title} {/* Display topic title from mock data */}
               </button>
             ))}
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
-          {/* Current Research Grid */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Current Research</h2>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-gray-200 h-48 rounded-lg"></div>
-              <div className="bg-gray-200 h-48 rounded-lg"></div>
-              <div className="bg-gray-200 h-48 rounded-lg"></div>
-            </div>
-          </div>
-
-          {/* Topic Content */}
+        <div
+          className="flex-1 overflow-y-auto"
+          style={{ maxHeight: "calc(100vh - 120px)" }}
+        >
+          {/* Loop through each topic to display its content */}
           <div className="space-y-12">
-            <ResearchTopic
-              title={data.object.metadata.heading}
-              blurb={data.object.metadata.blurb}
-            />
+            {data.object.map((topic, index) => {
+              const highlights = topic.metadata.publications.filter(
+                (pub) => pub.metadata.isHighlight
+              );
+              const more = topic.metadata.publications.filter(
+                (pub) => !pub.metadata.isHighlight
+              );
 
-            <Highlights
-              highlightTitle={data.object.metadata.highlight_title}
-              highlightInfo={data.object.metadata.highlight_info}
-            />
-
-            <More
-              moreTitle1={data.object.metadata.more_title1}
-              moreInfo1={data.object.metadata.more_info1}
-              moreTitle2={data.object.metadata.more_title2}
-              moreInfo2={data.object.metadata.more_info2}
-            />
+              return (
+                <div
+                  key={topic.slug}
+                  ref={(el) => (topicRefs.current[index] = el)}
+                  className="py-8"
+                >
+                  {/* Display Topic Description */}
+                  <div className="px-4 mb-6">
+                    <ResearchTopic
+                      slug={topic.slug}
+                      title={topic.title}
+                      metadata={topic.metadata}
+                    />
+                  </div>
+                  {/* Display Highlights */}
+                  <div className="px-4 mb-6">
+                    <Highlights publications={highlights} />
+                  </div>
+                  {/* Display More Publications */}
+                  <div className="px-4 mb-6">
+                    <More publications={more} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
