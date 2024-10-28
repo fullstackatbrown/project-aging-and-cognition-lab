@@ -30,6 +30,7 @@ export interface PublicationMetadata {
   description: string;
   image: string;
   isHighlight: boolean;
+  link: string;
 }
 
 export interface HighlightsProps {

@@ -3,7 +3,52 @@ import { mockResearchData } from "../../mock/research_mock";
 import ResearchTopic from "./components/ResearchTopic";
 import Highlights from "./components/Highlights";
 import More from "./components/More";
-import { APIObject } from "./Interfaces";
+import { APIObject, Publication } from "./Interfaces";
+
+// Define the prop types for PopupOverlay
+interface PopupOverlayProps {
+  isOpen: boolean;
+  onClose: () => void;
+  publications: Publication[];
+}
+
+// Popup overlay component
+function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+        <h2 className="text-xl font-semibold mb-4">Search Results</h2>
+        {publications.length > 0 ? (
+          <ul className="space-y-2">
+            {publications.map((pub) => (
+              <li key={pub.slug} className="border-b pb-2">
+                <a
+                  href={pub.metadata.link} // Link to the publication
+                  target="_blank" // Open link in new tab
+                  rel="noopener noreferrer" // Security best practices
+                  className="block cursor-pointer" // Full-width clickable area
+                >
+                  <h3 className="font-semibold">{pub.metadata.title}</h3>
+                  <p>{pub.metadata.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No results found.</p>
+        )}
+        <button
+          onClick={onClose}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+}
 
 // Move fetchMockData outside component and above it
 async function fetchMockData(): Promise<APIObject> {
@@ -14,6 +59,13 @@ export default function ResearchPage() {
   const [data, setData] = useState<APIObject | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Set the type of filteredPublications to Publication[]
+  const [filteredPublications, setFilteredPublications] = useState<
+    Publication[]
+  >([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Create refs for each topic
   const topicRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -21,7 +73,7 @@ export default function ResearchPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await fetchMockData();
+        const result = await fetchMockData(); // Call the fetchMockData function
         setData(result);
       } catch (err) {
         setError("Failed to fetch data.");
@@ -36,13 +88,47 @@ export default function ResearchPage() {
     topicRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleSearch = () => {
+    const allPublications =
+      data?.object.flatMap((topic) => topic.metadata.publications) || [];
+    const filtered = allPublications.filter((pub) =>
+      pub.metadata.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredPublications(filtered);
+    setIsPopupOpen(true);
+  };
+
   if (loading) return <div className="p-8">Loading...</div>;
   if (error) return <div className="p-8 text-red-500">{error}</div>;
   if (!data) return null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Research & Publications</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Research & Publications</h1>
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Search publications..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border rounded-l-md px-4 py-2"
+          />
+          <button
+            onClick={handleSearch}
+            className="bg-blue-500 text-white rounded-r-md px-4 py-2"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
+      {/* Popup Overlay for search results */}
+      <PopupOverlay
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        publications={filteredPublications}
+      />
 
       <div className="flex gap-8">
         {/* Sidebar Navigation */}
