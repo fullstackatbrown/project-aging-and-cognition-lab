@@ -1,0 +1,38 @@
+  .article {
+    flex-direction: row; 
+    background-color: #E5E4E2;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%; 
+    text-align: left;
+    height: 40vh; 
+    max-width: 2000px;
+    justify-content: flex-start;
+  }
+  
+  .article h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .article h3{
+    font-size: 1.25rem; 
+  }
+  
+  .article p {
+    line-height: 1.5;
+  }
+
+  .article img{
+    width: 15rem;
+    height: 15rem; 
+  }
+  
+  .article a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
