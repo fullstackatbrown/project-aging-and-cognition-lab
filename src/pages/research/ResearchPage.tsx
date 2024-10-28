@@ -9,13 +9,7 @@ import { APIObject, Publication } from "./Interfaces";
 interface PopupOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  publications: {
-    slug: string;
-    metadata: {
-      title: string;
-      description: string;
-    };
-  }[];
+  publications: Publication[];
 }
 
 // Popup overlay component
@@ -30,8 +24,15 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
           <ul className="space-y-2">
             {publications.map((pub) => (
               <li key={pub.slug} className="border-b pb-2">
-                <h3 className="font-semibold">{pub.metadata.title}</h3>
-                <p>{pub.metadata.description}</p>
+                <a
+                  href={pub.metadata.link} // Link to the publication
+                  target="_blank" // Open link in new tab
+                  rel="noopener noreferrer" // Security best practices
+                  className="block cursor-pointer" // Full-width clickable area
+                >
+                  <h3 className="font-semibold">{pub.metadata.title}</h3>
+                  <p>{pub.metadata.description}</p>
+                </a>
               </li>
             ))}
           </ul>
