@@ -13,14 +13,15 @@
   .article h2 {
     font-size: 2rem;
     margin-bottom: 10px;
+    margin-top: 5px; 
   }
 
   .article h3{
-    font-size: 1.25rem; 
+    font-size: 1.4rem; 
   }
   
   .article p {
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
   .article img{
@@ -36,3 +37,70 @@
     text-decoration: none;
     border-radius: 4px;
   }
+  
+  /* Large tablets and smaller screens */
+  @media (max-width: 1024px) {
+    .article {
+      flex-direction: column;
+      height: auto;
+      padding: 15px;
+    }
+  
+    .article h2 {
+      font-size: 1.75rem;
+    }
+  
+    .article h3 {
+      font-size: 1.1rem;
+    }
+  
+    .article img {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+  
+  /* Small tablets and large mobile phones */
+  @media (max-width: 768px) {
+    .article {
+      padding: 10px;
+    }
+  
+    .article h2 {
+      font-size: 1.5rem;
+    }
+  
+    .article h3 {
+      font-size: 1rem;
+    }
+  
+    .article img {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+  
+  /* Small mobile phones */
+  @media (max-width: 480px) {
+    .article {
+      padding: 8px;
+    }
+  
+    .article h2 {
+      font-size: 1.25rem;
+    }
+  
+    .article h3 {
+      font-size: 0.9rem;
+    }
+  
+    .article img {
+      width: 8rem;
+      height: 8rem;
+    }
+  
+    .article a {
+      padding: 8px 12px;
+    }
+  }
+  
