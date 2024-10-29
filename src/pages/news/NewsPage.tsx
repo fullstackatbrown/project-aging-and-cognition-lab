@@ -49,21 +49,21 @@ function NewsPage() {
     setData(jsonData);
   }, []);
 
-  /* Move to the next page */
+  /* move to the next page */
   const handleNextPage = () => {
     if (data && currentPage < Math.ceil(data.articles.length / articlesPerPage)) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
-  /* Go back to the previous page */
+  /* back to the previous page */
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
-  /* Choose the [5] articles for each page */
+  /* select the [5] articles for each page */
   const getCurrentPageArticles = () => {
     if (!data) return [];
     const startIndex = (currentPage - 1) * articlesPerPage;
@@ -72,15 +72,15 @@ function NewsPage() {
   };
 
   return (
-    <div className="flex flex-col my-10 mx-32">
+    <div className="flex flex-col my-10 mx-10 md:mx-20 lg:mx-32">
       <div>
-        <h1 className="text-4xl">News</h1>
+        <h1 className="text-3xl md:text-4xl">News</h1>
       </div>
       <div>
         {data ? (
           <>
             {/* <h2>{data.object.metadata.heading}</h2> */}
-            <div className="flex flex-col space-y-10 my-5 items-center">
+            <div className="flex flex-col space-y-8 my-5 items-center sm:space-y-10">
               {getCurrentPageArticles().map((article, index) => (
                 <Article
                   key={index}
@@ -93,7 +93,7 @@ function NewsPage() {
               ))}
             </div>
             {/* add buttons to move between pages of news articles */}
-            <div className="flex justify-center mt-5 space-x-10 mt-10">
+            <div className="flex justify-center mt-5 space-x-5 md:space-x-10">
               <button
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
