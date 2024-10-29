@@ -1,8 +1,35 @@
 import React from 'react'
-import {mockLabMembersData } from "../../mock/lab_members_mock_data";
+import {useEffect, useState} from 'react'
+import {labMembersMockData} from "../../mock/lab_members_mock_data";
+import { StringLiteral } from 'typescript';
+import './profile.css';
+
+interface APIObject {
+  object: DataObject;
+}
+
+interface DataObject {
+  slug: string;
+  title: string;
+  metadata: Metadata;
+}
+
+interface Metadata {
+  role: string;
+  bio: string;
+  photo: Image;
+  email: string;
+}
+
+interface Image {
+  url: string;
+  imgix_url: string;
+}
 
 
 export default function MembersPage() {
+  const [data, setData] = useState<APIObject | undefined>();
+  
   
     
 <div>     
@@ -56,6 +83,62 @@ if (object.metadata.role == “Alumni”) {
 
 */
   
-  return <div>MembersPage</div>;
+  return (
+  <div className="flex flex-col my-10 mx-14">
+    <div>
+        <h1 className="text-4xl">Lab Members</h1>
+    </div> 
 
+    <div className = "member">
+      <div className ="flex flex-col">
+            <div className = "title">
+                <p>Title</p>
+             </div>
+             <div className= "image">
+         
+             </div>
+
+      </div>
+      <div className ="flex flex-col">
+        <h1 className = "name">
+ 
+         <p>Name</p>
+
+        </h1>
+        <h2 className = "description">
+          <p> Lorem ipsum...</p>
+         </h2>
+      </div>
+
+
+    </div>
+
+    <div className="flex flex-col my-10">
+        <h2 className = "text-4xl">Alumni</h2>
+    </div>
+
+    <div className = "alumni">
+
+      <div className = "flex flex-col">
+          <div className = "image2">
+    
+         </div>
+
+         <div className = "name2">
+            
+            <p> Name </p>
+    
+         </div>
+
+         <div className = "description2">
+           
+            <p> Lorem Ipsum... </p>
+    
+          </div>
+      </div>
+
+    </div>
+    
+  </div>
+  )
 }
