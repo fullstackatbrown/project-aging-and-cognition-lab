@@ -54,31 +54,7 @@ export default function HomePage() {
 
   return (
     <div className="App">
-      <div className="parent">
-        <h2>Research</h2>
-        <div className="child">
-          <HomeResearchPrev
-          title="Research 1"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
-
-        <div className="child">
-          <HomeResearchPrev
-          title="Research 2"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
-
-        <div className="child">
-          <HomeResearchPrev
-          title="Research 3"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
+      <div>
 
         <div>
             <h1>This is our super cool website lol</h1>
@@ -88,12 +64,40 @@ export default function HomePage() {
               <>
                 <h2>{data.object.metadata.heading}</h2>
                 <h3>{data.object.metadata.subheading}</h3>
+                <div className="flex justify-center items-center">
                 {data.object.metadata.image.url && (
-                  <img
+                  <img className="w-1/2"
                     src={data.object.metadata.image.url}
                     alt={data.object.metadata.heading}
                   />
                 )}
+                </div>
+                <h2>Research</h2>
+        <div className="flex flex-row items-center">        
+          <div className="p-4 flex justify-center items-center">
+          <HomeResearchPrev
+          title="Research 1"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+
+        <div className="p-4 flex justify-center items-center">
+          <HomeResearchPrev
+          title="Research 2"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+
+        <div className="p-4 flex justify-center items-center">
+          <HomeResearchPrev
+          title="Research 3"
+          blurb="lorem ipsum dolor sit amet"
+          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+          ></HomeResearchPrev>
+        </div>
+        </div>
                 <Publication authors="Gordon Jin"
                   title="The effect of sleep on aging"
                   date="10/16/2024"
