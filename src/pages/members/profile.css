@@ -1,0 +1,62 @@
+.member{
+  width: 1250px;
+  height: 370px;
+  background-color: #cac9c9;
+  margin-left: 0px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.title{
+  font-size: 28px;
+  margin-left: 40px;
+  padding-top:30px;
+}
+
+.image{
+    width: 230px;
+    height: 220px;
+    background-color: white;
+    margin-top:17px;
+    margin-left:25px;
+}
+
+.name{
+    font-size: 18px;
+    margin-left: 50px;
+    margin-top:75px;
+}
+
+.description{
+  font-size: 18px;
+  margin-left: 50px;
+  margin-top:20px;
+}
+
+.alumni{
+    width: 325px;
+    height:325px;
+    background-color: #cac9c9;
+    margin-left: 0px;
+    display: flex;
+}
+
+.image2{
+    width: 175px;
+    height: 175px;
+    background-color: white;
+    margin-left:70px;
+    margin-top:25px;
+}
+
+.name2{
+  font-size: 17px;
+  margin-left:50px;
+  margin-top:15px;
+}
+
+.description2{
+  font-size: 13px;
+  margin-left:50px;
+  margin-top:5px;
+}
