@@ -106,7 +106,7 @@ export default function HomePage() {
 
         {/* Section for Contacts & Info */}
         <div className="content-sections">
-          <section className="contacts">
+          <section className="contacts" id="contacts">
             <h2>Contacts & Info</h2>
             <p> We are located within the Brown University Department of Cognitive, Linguistics &
               Psychological Sciences (CLPS)</p>

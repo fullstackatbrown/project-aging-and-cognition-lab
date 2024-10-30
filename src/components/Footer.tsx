@@ -1,9 +1,10 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import logo from '../assets/image.png'
+
 
 export default function Footer() {
   const location = useLocation();
+  const logo = require('../assets/image.png');
 
   return (
     <div className="flex justify-center items-center space-x-4 p-5 bg-gray-100 border-t-2 border-gray-300">

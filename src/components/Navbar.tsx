@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import headerImage from '../assets/image.png'
-
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate(); // Use useNavigate for programmatic navigation
+  const logo = require('../assets/image.png');
 
   // Toggle dropdown
   const toggleDropdown = () => {
@@ -31,7 +30,7 @@ export default function Navbar() {
     <>
       <header
         className="h-[100px] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center text-[#170303] mx-auto my-5 p-5"
-        style={{ backgroundImage: `url(${headerImage})` }}
+        style={{ backgroundImage: `url(${logo})` }}
       >
       </header>
 

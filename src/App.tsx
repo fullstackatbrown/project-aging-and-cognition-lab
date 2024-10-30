@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   function Nav() {
@@ -39,7 +41,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        <Navbar />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -50,6 +52,7 @@ function App() {
             {/* <Route path="*" element={<NotFound />} /> Fallback route */}
           </Routes>
         </Suspense>
+        <Footer />
       </div>
     </Router>
   );
