@@ -3,15 +3,29 @@ import { useEffect, useState } from "react";
 import { mockHomeData } from "../../mock/example_mock_data";
 import HomeResearchPrev from "../../components/HomeResearchPrev";
 import Publication from "../../components/Publication";
+import Button from "../../components/Button";
+// make the image span the whole page
 
 interface APIObject {
   object: DataObject;
+}
+
+interface Publication {
+  title: string;
+  authors: string;
+  journal: string;
+  date: string;
 }
 
 interface DataObject {
   slug: string;
   title: string;
   metadata: Metadata;
+}
+
+interface News {
+  title: string;
+  image: string;
 }
 
 interface Metadata {
@@ -22,6 +36,8 @@ interface Metadata {
   email: string;
   hours: string;
   image: Image;
+  publications: Publication[];
+  news: News[]
 }
 
 interface Image {
@@ -98,16 +114,34 @@ export default function HomePage() {
           ></HomeResearchPrev>
         </div>
         </div>
-                <Publication authors="Gordon Jin"
-                  title="The effect of sleep on aging"
-                  date="10/16/2024"
-                  journal="Nature"></Publication>
+        <h2>Publications</h2>
+            <Publication authors={data.object.metadata.publications[0].authors}
+              title={data.object.metadata.publications[0].title}
+              date={data.object.metadata.publications[0].date}
+              journal={data.object.metadata.publications[0].journal}>
+            </Publication>
+            <Publication authors={data.object.metadata.publications[1].authors}
+              title={data.object.metadata.publications[1].title}
+              date={data.object.metadata.publications[1].date}
+              journal={data.object.metadata.publications[1].journal}>
+            </Publication><Publication authors={data.object.metadata.publications[2].authors}
+              title={data.object.metadata.publications[2].title}
+              date={data.object.metadata.publications[2].date}
+              journal={data.object.metadata.publications[2].journal}>
+            </Publication>
+            <Button text="View More"></Button>
+
+            <h2>News</h2>
+            <div>
+              <img src={data.object.metadata.news[0].image} alt="loading" />
+              <em><h3>{data.object.metadata.news[0].title}</h3></em>
+            </div>
               </>
             ) : (
               <p>Loading...</p>
             )}
           </div>
-
+        
         {/* Section for Contacts & Info */}
         <div className="content-sections">
           <section className="contacts">
