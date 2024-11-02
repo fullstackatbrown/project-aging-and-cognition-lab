@@ -71,70 +71,74 @@ export default function HomePage() {
   return (
     <div className="App">
       <div>
-
         <div>
-            <h1>This is our super cool website lol</h1>
-          </div>
-          <div>
-            {data ? (
-              <>
-                <h2>{data.object.metadata.heading}</h2>
-                <h3>{data.object.metadata.subheading}</h3>
-                <div className="flex justify-center items-center">
+          <h1>This is our super cool website lol</h1>
+        </div>
+        <div>
+          {data ? (
+            <>
+            <div className="space-y-4">
+              <h2 className="font-mono text-2xl whitespace-normal">{data.object.metadata.heading}</h2>
+              <h3 className="font-mono text-2xl whitespace-normal">{data.object.metadata.subheading}</h3>
+              <div className="flex justify-center items-center">
                 {data.object.metadata.image.url && (
-                  <img className="w-1/2"
+                  <img className="w-11/12 h-auto object-cover rounded-md"
                     src={data.object.metadata.image.url}
                     alt={data.object.metadata.heading}
                   />
                 )}
+              </div>
+              <h2 className="font-mono text-3xl">Research</h2>
+              <div className="flex flex-row justify-center items-center">        
+                <div className="flex justify-center items-center">
+                  <HomeResearchPrev
+                    title="Research 1"
+                    blurb="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+                  ></HomeResearchPrev>
                 </div>
-                <h2>Research</h2>
-        <div className="flex flex-row items-center">        
-          <div className="p-4 flex justify-center items-center">
-          <HomeResearchPrev
-          title="Research 1"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
-
-        <div className="p-4 flex justify-center items-center">
-          <HomeResearchPrev
-          title="Research 2"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
-
-        <div className="p-4 flex justify-center items-center">
-          <HomeResearchPrev
-          title="Research 3"
-          blurb="lorem ipsum dolor sit amet"
-          imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-          ></HomeResearchPrev>
-        </div>
-        </div>
-        <h2>Publications</h2>
-            <Publication authors={data.object.metadata.publications[0].authors}
-              title={data.object.metadata.publications[0].title}
-              date={data.object.metadata.publications[0].date}
-              journal={data.object.metadata.publications[0].journal}>
-            </Publication>
-            <Publication authors={data.object.metadata.publications[1].authors}
-              title={data.object.metadata.publications[1].title}
-              date={data.object.metadata.publications[1].date}
-              journal={data.object.metadata.publications[1].journal}>
-            </Publication><Publication authors={data.object.metadata.publications[2].authors}
-              title={data.object.metadata.publications[2].title}
-              date={data.object.metadata.publications[2].date}
-              journal={data.object.metadata.publications[2].journal}>
-            </Publication>
-            <Button text="View More"></Button>
-
-            <h2>News</h2>
-            <div>
-              <img src={data.object.metadata.news[0].image} alt="loading" />
-              <em><h3>{data.object.metadata.news[0].title}</h3></em>
+                <div className="flex justify-center items-center">
+                  <HomeResearchPrev
+                    title="Research 2"
+                    blurb="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+                  ></HomeResearchPrev>
+                </div>
+                <div className="flex justify-center items-center">
+                  <HomeResearchPrev
+                    title="Research 3"
+                    blurb="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
+                  ></HomeResearchPrev>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row justify-center">
+              <div>
+                <h2>Publications</h2>
+                <Publication authors={data.object.metadata.publications[0].authors}
+                  title={data.object.metadata.publications[0].title}
+                  date={data.object.metadata.publications[0].date}
+                  journal={data.object.metadata.publications[0].journal}>
+                </Publication>
+                <Publication authors={data.object.metadata.publications[1].authors}
+                  title={data.object.metadata.publications[1].title}
+                  date={data.object.metadata.publications[1].date}
+                  journal={data.object.metadata.publications[1].journal}>
+                </Publication><Publication authors={data.object.metadata.publications[2].authors}
+                  title={data.object.metadata.publications[2].title}
+                  date={data.object.metadata.publications[2].date}
+                  journal={data.object.metadata.publications[2].journal}>
+                </Publication>
+                <Button text="View More"></Button>
+              </div>
+              <div>
+                <h2>News</h2>
+                <div>
+                  <img src={data.object.metadata.news[0].image} alt="loading" />
+                  <em><h3>{data.object.metadata.news[0].title}</h3></em>
+                </div>
+              </div>
             </div>
               </>
             ) : (
