@@ -15,44 +15,44 @@ export const mockHomeData = {
             },
             "publications": [
                 {
-                    "title": "<title>",
-                    "authors": "<authors>",
-                    "journal": "<journal>",
-                    "date": "<date>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "authors": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "journal": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "date": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                 },
                 {
-                    "title": "<title>",
-                    "authors": "<authors>",
-                    "journal": "<journal>",
-                    "date": "<date>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "authors": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "journal": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "date": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                 },
                 {
-                    "title": "<title>",
-                    "authors": "<authors>",
-                    "journal": "<journal>",
-                    "date": "<date>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "authors": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "journal": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "date": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                 }
             ],
             "news": [
                 {
-                    "title": "<title>",
-                    "image": "<image>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "image": "https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
                 },
                 {
-                    "title": "<title>",
-                    "image": "<image>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "image": "https://media1.tenor.com/m/f8YmpuCCXJcAAAAd/roasted-oh.gif"
                 },
                 {
-                    "title": "<title>",
-                    "image": "<image>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "image": "https://media1.tenor.com/m/UCEZKT9-QwIAAAAd/hugs-love.gif"
                 },
                 {
-                    "title": "<title>",
-                    "image": "<image>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "image": "https://media1.tenor.com/m/t8f7oXKWQucAAAAC/emobob-sponegbob.gif"
                 },
                 {
-                    "title": "<title>",
-                    "image": "<image>"
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "image": "https://media1.tenor.com/m/_pSTChwI1mcAAAAC/dbz-goku.gif"
                 }
             ]
         }

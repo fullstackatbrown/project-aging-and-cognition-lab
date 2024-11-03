@@ -1,7 +1,5 @@
-import React from 'react'
-
-export default function Publication({ text }: any) {
+export default function Button({ text, className }: any) {
     return (
-        <button>text</button>
+        <button>{text}</button>
     )
 }
