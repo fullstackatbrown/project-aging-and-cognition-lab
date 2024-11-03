@@ -81,17 +81,17 @@ export default function HomePage() {
         {data ? (
           <>
           {/* Hero Section */}
-          <div className="w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url(${data.object.metadata.image.url})` }}>
-            <div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-8">
+          <div className="w-full h-screen bg-cover bg-center rounded-lg my-4" style={{ backgroundImage: `url(${data.object.metadata.image.url})` }}>
+            <div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-48 rounded-lg">
               <h1 className="text-4xl sm:text-5xl font-bold mb-4">{data.object.metadata.heading}</h1>
               <p className="text-lg sm:text-2xl">{data.object.metadata.subheading}</p>
             </div>
           </div>
 
           {/* Research Section */}
-          <section className="w-full max-w-5xl mx-auto p-8">
+          <section className="w-full max-w-8xl mx-auto p-8">
             <h2 className="text-3xl font-semibold mb-4 text-center">Research</h2>
-            <div className="flex flex-wrap justify-around gap-4">
+            <div className="flex flex-wrap justify-center gap-1 space-x-3">
               {Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="w-full md:w-1/4 flex justify-center">
                   <HomeResearchPrev
@@ -106,12 +106,12 @@ export default function HomePage() {
           </section>
 
           {/* Publications & News Section */}
-          <section className="w-full max-w-5xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-lg">
+          <section className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-lg my-4">
             {/* Publications */}
             <div className="w-full md:w-2/3 space-y-4">
               <h2 className="text-2xl font-semibold">Publications</h2>
               {data.object.metadata.publications.slice(0, 3).map((pub, index) => (
-                <div key={index} className="bg-gray-100 p-4 rounded-lg shadow">
+                <div key={index} className="bg-gray-100 p-4 rounded-lg shadow transition ease-in-out delay-50 hover:bg-gray-300">
                   <Publication
                     authors={pub.authors}
                     title={pub.title}
@@ -120,19 +120,24 @@ export default function HomePage() {
                   />
                 </div>
               ))}
-              <div>
+              <div className="flex justify-end">
                 <Button text="View More" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" />
               </div>
             </div>
             {/* News */}
             <div className="w-full md:w-1/3 space-y-4">
               <h2 className="text-2xl font-semibold">News</h2>
-              {data.object.metadata.news.length > 0 && (
-                <div className="bg-gray-100 p-4 rounded-lg shadow">
-                  <img src={data.object.metadata.news[newsIndex].image} alt={data.object.metadata.news[newsIndex].title} className="w-full h-48 object-cover rounded-lg mb-2" />
-                  <h3 className="text-lg font-medium italic">{data.object.metadata.news[newsIndex].title}</h3>
+              <div className="flex flex-col space-y-4">
+                {data.object.metadata.news.length > 0 && (
+                  <div className="bg-gray-100 p-4 rounded-lg shadow transition ease-in-out delay-50 hover:bg-gray-300">
+                    <img src={data.object.metadata.news[newsIndex].image} alt={data.object.metadata.news[newsIndex].title} className="w-full h-48 object-cover rounded-lg mb-2" />
+                    <h3 className="text-lg font-medium italic">{data.object.metadata.news[newsIndex].title}</h3> 
+                  </div>
+                )}
+                <div className="flex justify-end">
+                  <Button text="View More" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" />
                 </div>
-              )}
+              </div>
             </div>
           </section>
           </>
