@@ -85,12 +85,20 @@ export default function ResearchPage() {
   const updateInitialPositions = () => {
     if (headerRef.current && sidebarRef.current) {
       const scrollY = window.scrollY;
+
+      // Reset to get true position of sidebar + searchbar
       window.scrollTo(0, 0);
+
+      // Get positions
       headerInitialTop.current = headerRef.current.getBoundingClientRect().top;
       sidebarInitialTop.current =
         sidebarRef.current.getBoundingClientRect().top;
       sidebarWidth.current = sidebarRef.current.offsetWidth;
+
+      // Restore scroll
       window.scrollTo(0, scrollY);
+
+      // Update fixed states based on current scroll position
       setIsHeaderFixed(scrollY > (headerInitialTop.current || 0));
       setIsSidebarFixed(scrollY > (sidebarInitialTop.current || 0));
 
@@ -113,6 +121,7 @@ export default function ResearchPage() {
     setIsInitialized(false);
   }, []);
 
+  // Initialize measurements after data is loaded
   useEffect(() => {
     if (!loading && data && !isInitialized) {
       const initTimer = requestAnimationFrame(() => {
@@ -123,6 +132,7 @@ export default function ResearchPage() {
     }
   }, [loading, data, isInitialized]);
 
+  // Scroll and resize handling
   useEffect(() => {
     if (!isInitialized) return;
 
@@ -138,6 +148,7 @@ export default function ResearchPage() {
     };
 
     const handleResize = () => {
+      // Reset initialization to force recalculation
       setIsInitialized(false);
     };
 
