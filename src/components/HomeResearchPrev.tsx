@@ -3,13 +3,14 @@ import React from 'react';
 export default function HomeResearchPrev(props: any) {
   return (
 
-    <div className="border-black border-2 bg-gray-200 w-1/2 aspect-square p-4 rounded-lg">
-        <h4 className='text-center'>{props.title}</h4>
-        <h5 className='text-center'>{props.blurb}</h5>
-        <div className='flex justify-center items-center'>
-          <img className='w-2/3'
+    <div className="shadow-md bg-gray-200 w-full h-full p-4 rounded-lg space-y-2 group-hover: bg-gray-200
+    transition ease-in-out delay-50 hover:bg-gray-300 flex flex-col justify-center items-center">
+        <h4 className='text-center text-lg'>{props.title}</h4>
+        <h5 className='text-center text-md'>{props.blurb}</h5>
+        <div className='flex justify-center items-center w-1/3'>
+          <img className='rounded-lg shadow-md'
           src={props.imageURL} alt=""/>
-          </div>
+        </div>
        
     </div>
   )
