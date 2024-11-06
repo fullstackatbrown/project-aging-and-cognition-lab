@@ -549,20 +549,4 @@ video {
   margin-top: 40px;
 }
 
-/* Contacts & Info Section */
 
-.contacts {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fafafa;
-
-}
-.contacts h2 {
-  color: #51AAAB;
-  line-height: 48.41px;
-  font-size: 40px;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-}
