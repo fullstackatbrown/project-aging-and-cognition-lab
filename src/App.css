@@ -1,61 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  text-align: center;
+:root {
+  --base-teal: #51AAAB;
+  --dark-teal: #327575;
+  --orange: #E88F3D;
+  --off-white: #F7F7F7;
+  --beige: #F1DDCE;
+  --text-dark: #292929;
+  --text-grey: #444444;
+  --text-light: #737373;
+  --transition-time: all 0.2s ease-in-out;
+  --font-bold: 700;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+  color: var( --text-dark);
+  font-size: 18px;
+  font-weight: 500;
+  background-color: var(--primary-white);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: var( --font-bold);
+  line-height: 1.5em;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
-  font-size: 48px;
-  color: #327575;
+  font-size: 3rem;
+  color: var(--dark-teal);
+  padding-bottom: 0.2em;
+  line-height: 1.2em;
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 1.8rem;
+  line-height: 1.2em;
+  font-weight: 300;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 1.6rem;
 }
 
-p {
+/* p {
   font-size: 16px;
   color: #000000;
-}
+} */

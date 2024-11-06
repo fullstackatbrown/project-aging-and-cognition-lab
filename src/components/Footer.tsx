@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function Footer() {
   const location = useLocation();
-  const logo = require('../assets/image.png');
+  const logo = require('../assets/banner.png');
 
   return (
     <div className="flex justify-center items-center space-x-4 p-5 bg-gray-100 border-t-2 border-gray-300">
