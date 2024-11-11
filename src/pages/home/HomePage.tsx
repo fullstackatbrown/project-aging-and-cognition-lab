@@ -82,21 +82,21 @@ export default function HomePage() {
           {data ? (
               <>
                 {/* Hero Section */}
-                <div className="w-full h-screen bg-cover bg-center rounded-lg my-4"
+                <div className="w-full h-screen bg-cover bg-center rounded-3xl my-4"
                      style={{backgroundImage: `url(${data.object.metadata.image.url})`}}>
                   <div
-                      className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-48 rounded-lg">
+                      className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-48 rounded-3xl">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-4">{data.object.metadata.heading}</h1>
                     <p className="text-lg sm:text-2xl">{data.object.metadata.subheading}</p>
                   </div>
                 </div>
 
                 {/* Research Section */}
-                <section className="w-full max-w-8xl mx-auto p-8">
-                  <h2 className="text-3xl font-semibold mb-4 text-center">Research</h2>
-                  <div className="flex flex-wrap justify-center gap-1 space-x-3">
+                <section className="w-full max-w-7xl mx-auto p-8">
+                  <h1 className="text-3xl font-semibold mb-4 text-left" style={{color:"var(--base-teal)"}}>Research</h1>
+                  <div className="flex flex-wrap grid grid-flow-col justify-stretch space-x-4">
                     {Array.from({length: 3}).map((_, i) => (
-                        <div key={i} className="w-full md:w-1/4 flex justify-center">
+                        <div key={i} className="w-auto flex justify-center">
                           <HomeResearchPrev
                               title={`Research ${i + 1}`}
                               blurb="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -110,13 +110,13 @@ export default function HomePage() {
 
                 {/* Publications & News Section */}
                 <section
-                    className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-lg my-4">
+                    className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-3xl my-4">
                   {/* Publications */}
                   <div className="w-full md:w-2/3 space-y-4">
                     <h2 className="text-2xl font-semibold">Publications</h2>
                     {data.object.metadata.publications.slice(0, 3).map((pub, index) => (
                         <div key={index}
-                             className="bg-gray-100 p-4 rounded-lg shadow transition ease-in-out delay-50 hover:bg-gray-300">
+                             className="bg-gray-100 p-4 rounded-3xl shadow transition ease-in-out delay-50 hover:bg-gray-300">
                           <Publication
                               authors={pub.authors}
                               title={pub.title}
@@ -136,7 +136,7 @@ export default function HomePage() {
                     <div className="flex flex-col space-y-4">
                       {data.object.metadata.news.length > 0 && (
                           <div
-                              className="bg-gray-100 p-4 rounded-lg shadow transition ease-in-out delay-50 hover:bg-gray-300">
+                              className="bg-gray-100 p-4 rounded-3xl shadow transition ease-in-out delay-50 hover:bg-gray-300">
                             <img src={data.object.metadata.news[newsIndex].image}
                                  alt={data.object.metadata.news[newsIndex].title}
                                  className="w-full h-48 object-cover rounded-lg mb-2"/>
