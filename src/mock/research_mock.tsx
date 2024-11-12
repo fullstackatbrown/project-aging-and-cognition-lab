@@ -101,5 +101,58 @@ export const mockResearchData: APIObject = {
         ],
       },
     },
+    {
+      slug: "More",
+      title: "More",
+      metadata: {
+        description: "Topic 3 Description",
+        publications: [
+          {
+            slug: "publication-6",
+            title: "Publication 6",
+            metadata: {
+              title: "Highlight Title 3",
+              description: "Highlighted Description 3.",
+              image: "6.jpg",
+              isHighlight: false,
+              link: "https://example.com/publication-6",
+            },
+          },
+          {
+            slug: "publication-6",
+            title: "Publication 6",
+            metadata: {
+              title: "Highlight Title 3",
+              description: "Highlighted Description 3.",
+              image: "6.jpg",
+              isHighlight: false,
+              link: "https://example.com/publication-6",
+            },
+          },
+          {
+            slug: "publication-6",
+            title: "Publication 6",
+            metadata: {
+              title: "Highlight Title 3",
+              description: "Highlighted Description 3.",
+              image: "6.jpg",
+              isHighlight: false,
+              link: "https://example.com/publication-6",
+            },
+          },
+          {
+            slug: "publication-6",
+            title: "Publication 6",
+            metadata: {
+              title: "Highlight Title 3",
+              description: "Highlighted Description 3.",
+              image: "6.jpg",
+              isHighlight: false,
+              link: "https://example.com/publication-6",
+            },
+          },
+        ],
+      },
+    },
   ],
 };
