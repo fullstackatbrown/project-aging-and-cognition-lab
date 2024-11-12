@@ -77,19 +77,21 @@ export default function HomePage() {
 
   return (
       <div
-          className="App bg-gray-100 min-h-screen flex flex-col items-center text-gray-800 font-sans">
+          className="App bg-white min-h-screen flex flex-col items-center text-gray-800 font-sans">
         <div>
           {data ? (
               <>
                 {/* Hero Section */}
-                <div className="w-full h-screen bg-cover bg-center rounded-3xl my-4"
+                <div className="w-full bg-cover bg-center rounded-3xl my-4"
                      style={{backgroundImage: `url(${data.object.metadata.image.url})`}}>
                   <div
                       className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-48 rounded-3xl">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-4">{data.object.metadata.heading}</h1>
                     <p className="text-lg sm:text-2xl">{data.object.metadata.subheading}</p>
                   </div>
-                </div>
+                </div>  
+
+                <div className="w-full bg-gradient-to-b from-cyan-500 to-orange-100">
 
                 {/* Research Section */}
                 <section className="w-full max-w-7xl mx-auto p-8">
@@ -108,6 +110,7 @@ export default function HomePage() {
                   </div>
                 </section>
 
+                  
                 {/* Publications & News Section */}
                 <section
                     className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-3xl my-4">
@@ -151,9 +154,10 @@ export default function HomePage() {
                   </div>
                 </section>
 
+
                 {/* Section for Contacts & Info */}
                 <section
-                    className="contacts w-full max-w-7xl mx-auto p-8 border border-gray-300 rounded-lg bg-gray-50 shadow-md my-4"
+                    className="contacts w-full max-w-7xl mx-auto p-8 border border-gray-300 rounded-lg bg-gray-50 shadow-md my-4 text-left"
                     id="contacts"
                 >
                   <h2 className="text-customTeal text-4xl font-semibold font-sans leading-[1.2] mb-4">
@@ -166,9 +170,11 @@ export default function HomePage() {
                   <p className="mb-1">Metcalf Research Building</p>
                   <p className="mb-1">190 Thayer Street</p>
                   <p className="mb-1">Providence, RI 02912</p>
+                  <br></br>
                   <p className="mb-1">Call: (401) 863-3347</p>
                   <p>Email: CLPS@brown.edu, agingandcognitionlab@brown.edu</p>
                 </section>
+                </div>
               </>
           ) : (
               <p>Loading...</p>
