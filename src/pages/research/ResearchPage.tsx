@@ -287,22 +287,25 @@ export default function ResearchPage() {
                 width: sidebarWidth.current || "16rem",
               }}
             >
-              <h2 className="text-xl font-semibold mb-4">Current Research</h2>
-              <div className="space-y-3">
-                {data.object.map((topic, index) => (
-                  <button
-                    key={topic.slug}
-                    onClick={() =>
-                      topic.slug === "More"
-                        ? scrollToTopic(-1)
-                        : scrollToTopic(index)
-                    }
-                    className="block w-full text-left px-3 py-2 text-lg hover:bg-gray-100 rounded-md transition-colors"
-                  >
-                    {topic.title}
-                  </button>
-                ))}
+              <div className="sidebar bg-gray">
+                <h2 className="text-xl font-semibold mb-4">Current Research</h2>
+                <div className="space-y-3">
+                  {data.object.map((topic, index) => (
+                    <button
+                      key={topic.slug}
+                      onClick={() =>
+                        topic.slug === "More"
+                          ? scrollToTopic(-1)
+                          : scrollToTopic(index)
+                      }
+                      className="block w-full text-left px-3 py-2 text-lg hover:bg-gray-100 rounded-md transition-colors"
+                    >
+                      {topic.title}
+                    </button>
+                  ))}
+                </div>
               </div>
+              
             </div>
           </div>
 
