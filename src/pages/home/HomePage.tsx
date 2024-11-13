@@ -86,12 +86,16 @@ export default function HomePage() {
                 </a></div>
 
                 {/* Hero Section */}
-                <div className="w-full bg-cover bg-center rounded-3xl my-4"
+                <div className="group w-full bg-cover bg-center rounded-3xl my-4"
                      style={{backgroundImage: `url(${data.object.metadata.image.url})`}}>
                   <div
-                      className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-48 rounded-3xl">
-                    <h1 className="text-4xl sm:text-5xl font-bold mb-4">{data.object.metadata.heading}</h1>
-                    <p className="text-lg sm:text-2xl">{data.object.metadata.subheading}</p>
+                      className="w-full h-full bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-500 flex flex-col justify-center items-center text-white text-center p-48 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                    <h1 className="text-4xl sm:text-5xl font-bold mb-4 transform group-hover:translate-y-0 transition-transform duration-500">
+                      {data.object.metadata.heading}
+                    </h1>
+                    <p className="text-lg sm:text-2xl transform group-hover:translate-y-0 transition-transform duration-500">
+                      {data.object.metadata.subheading}
+                    </p>
                   </div>
                 </div>  
 
