@@ -4,6 +4,7 @@ import ResearchTopic from "./components/ResearchTopic";
 import Highlights from "./components/Highlights";
 import More from "./components/More";
 import { APIObject, Publication } from "./Interfaces";
+import { Search } from "lucide-react"; // Import the Search icon from lucide-react
 
 // Define the prop types for PopupOverlay
 interface PopupOverlayProps {
@@ -12,39 +13,67 @@ interface PopupOverlayProps {
   publications: Publication[];
 }
 
-// Popup overlay component
 function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
+  // Prevent background scrolling when the popup is open
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.documentElement.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.documentElement.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-lg w-full">
-        <h2 className="text-xl font-semibold mb-4">Search Results</h2>
-        {publications.length > 0 ? (
-          <ul className="space-y-2">
-            {publications.map((pub) => (
-              <li key={pub.slug} className="border-b pb-2">
-                <a
-                  href={pub.metadata.link} // Link to the publication
-                  target="_blank" // Open link in new tab
-                  rel="noopener noreferrer" // Security best practices
-                  className="block cursor-pointer" // Full-width clickable area
-                >
-                  <h3 className="font-semibold">{pub.metadata.title}</h3>
-                  <p>{pub.metadata.description}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No results found.</p>
-        )}
-        <button
-          onClick={onClose}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Close
-        </button>
+    <div
+      onClick={onClose} // Close popup when clicking on the background
+      className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
+        className="bg-white rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
+      >
+        {/* Header section with title and close button */}
+        <div className="flex justify-between items-center pb-4 border-b border-gray-300">
+          <h2 className="text-xl font-semibold">Search Results</h2>
+          <button
+            onClick={onClose} // Close button in the top right corner
+            className="text-gray-600 hover:text-gray-800 text-xl font-bold"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+
+        {/* Scrollable content area for publications */}
+        <div className="overflow-y-auto flex-1 mt-4">
+          {publications.length > 0 ? (
+            <ul className="space-y-2">
+              {publications.map((pub) => (
+                <li key={pub.slug} className="border-b pb-2">
+                  <a
+                    href={pub.metadata.link} // Link to the publication
+                    target="_blank" // Open link in new tab
+                    rel="noopener noreferrer" // Security best practices
+                    className="block cursor-pointer" // Full-width clickable area
+                  >
+                    <h3 className="font-semibold">{pub.metadata.title}</h3>
+                    <p>{pub.metadata.description}</p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No results found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -71,8 +100,11 @@ export default function ResearchPage() {
   const [isSidebarFixed, setIsSidebarFixed] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
+  const [sidebarHeight, setSidebarHeight] = useState<number | null>(null); // State to store sidebar height
+
   // Create refs for each topic
   const topicRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const moreSectionRef = useRef<HTMLDivElement | null>(null); // Ref for the "More" section
 
   const headerRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -81,27 +113,21 @@ export default function ResearchPage() {
   const sidebarInitialTop = useRef<number | null>(null);
   const sidebarWidth = useRef<number | null>(null);
 
-  // Update initial positions
+  // Function to calculate initial positions of header and sidebar
   const updateInitialPositions = () => {
     if (headerRef.current && sidebarRef.current) {
       const scrollY = window.scrollY;
 
-      // Reset to get true position of sidebar + searchbar
-      window.scrollTo(0, 0);
+      // Get the initial positions without scrolling to top
+      const headerRect = headerRef.current.getBoundingClientRect();
+      const sidebarRect = sidebarRef.current.getBoundingClientRect();
 
-      // Get positions
-      headerInitialTop.current = headerRef.current.getBoundingClientRect().top;
-      sidebarInitialTop.current =
-        sidebarRef.current.getBoundingClientRect().top;
+      headerInitialTop.current = headerRect.top + scrollY;
+      sidebarInitialTop.current = sidebarRect.top + scrollY;
       sidebarWidth.current = sidebarRef.current.offsetWidth;
 
-      // Restore scroll
-      window.scrollTo(0, scrollY);
-
-      // Update fixed states based on current scroll position
       setIsHeaderFixed(scrollY > (headerInitialTop.current || 0));
       setIsSidebarFixed(scrollY > (sidebarInitialTop.current || 0));
-
       setIsInitialized(true);
     }
   };
@@ -124,13 +150,21 @@ export default function ResearchPage() {
   // Initialize measurements after data is loaded
   useEffect(() => {
     if (!loading && data && !isInitialized) {
-      const initTimer = requestAnimationFrame(() => {
+      const initTimer = setTimeout(() => {
         updateInitialPositions();
-      });
+      }, 100); // Small delay to ensure DOM is ready
 
-      return () => cancelAnimationFrame(initTimer);
+      return () => clearTimeout(initTimer);
     }
   }, [loading, data, isInitialized]);
+
+  // Track the height of the main content and update sidebar height
+  useEffect(() => {
+    if (mainContentRef.current) {
+      const mainContentHeight = mainContentRef.current.offsetHeight;
+      setSidebarHeight(mainContentHeight); // Set sidebar height to match main content
+    }
+  }, [data]); // Triggered when data changes and component is re-rendered
 
   // Scroll and resize handling
   useEffect(() => {
@@ -139,20 +173,22 @@ export default function ResearchPage() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
+      if (sidebarInitialTop.current !== null) {
+        const shouldFixSidebar =
+          scrollPosition > sidebarInitialTop.current - 20; // Added offset for smoother transition
+        setIsSidebarFixed(shouldFixSidebar);
+      }
+
       if (headerInitialTop.current !== null) {
         setIsHeaderFixed(scrollPosition > headerInitialTop.current);
-      }
-      if (sidebarInitialTop.current !== null) {
-        setIsSidebarFixed(scrollPosition > sidebarInitialTop.current);
       }
     };
 
     const handleResize = () => {
-      // Reset initialization to force recalculation
       setIsInitialized(false);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -162,7 +198,13 @@ export default function ResearchPage() {
   }, [isInitialized]);
 
   const scrollToTopic = (index: number) => {
-    topicRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
+    if (index === -1) {
+      // Scroll to "More" section
+      moreSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Scroll to specified topic
+      topicRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleSearch = () => {
@@ -175,68 +217,74 @@ export default function ResearchPage() {
     setIsPopupOpen(true);
   };
 
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   if (loading) return <div className="p-8">Loading...</div>;
   if (error) return <div className="p-8 text-red-500">{error}</div>;
   if (!data) return null;
 
   return (
     <div className="min-h-screen bg-white">
-      {isHeaderFixed && (
-        <div style={{ height: headerRef.current?.offsetHeight }} />
-      )}
-      <div
-        ref={headerRef}
-        className={`bg-white z-10 border-b transition-all duration-300 ${
-          isHeaderFixed ? "fixed top-0 left-0 right-0" : ""
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Research & Publications</h1>
-            <div className="flex">
-              <input
-                type="text"
-                placeholder="Search publications..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="border rounded-l-md px-4 py-2"
-              />
-              <button
-                onClick={handleSearch}
-                className="bg-blue-500 text-white rounded-r-md px-4 py-2"
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Popup Overlay for search results */}
+      {/* Popup Overlay */}
       <PopupOverlay
         isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        onClose={closePopup}
         publications={filteredPublications}
       />
 
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex gap-8 pt-24">
+      <div className="max-w-7xl mx-auto px-4 pt-4">
+        <div className="flex gap-8">
           <div
-            style={{ width: sidebarWidth.current || "16rem", flexShrink: 0 }}
+            style={{
+              width: sidebarWidth.current || "16rem",
+              flexShrink: 0,
+              height: sidebarHeight || "auto",
+              position: "relative", // Added to contain the fixed sidebar
+            }}
           >
+            {/* Search Bar */}
+            <div
+              style={{
+                position: isSidebarFixed ? "sticky" : "relative",
+                top: isHeaderFixed ? "5rem" : "1rem",
+                width: sidebarWidth.current || "16rem",
+              }}
+            >
+              <div className="relative flex items-center">
+                {/* Input field with rounded shape */}
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search publications..."
+                  className="flex-1 px-6 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch();
+                    }
+                  }}
+                />
+
+                {/* Search button (magnifying glass icon) */}
+                <button
+                  onClick={handleSearch}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700"
+                >
+                  <Search size={20} />
+                </button>
+              </div>
+            </div>
+
             {/* Sidebar Navigation */}
             <div
               ref={sidebarRef}
-              className={`w-64 bg-gray-50 shadow-md rounded-lg p-4 transition-all duration-300 ease-in-out ${
-                isSidebarFixed ? "fixed" : "relative"
-              }`}
+              className="w-64 bg-gray-50 shadow-md rounded-lg p-4 mt-4"
               style={{
-                ...{
-                  transform: isSidebarFixed
-                    ? `translateY(${isHeaderFixed ? "5rem" : "1rem"})`
-                    : "none",
-                },
-                top: 0,
+                position: isSidebarFixed ? "sticky" : "relative",
+                top: isHeaderFixed ? "5rem" : "1rem", // Adjust top spacing to match header
+                width: sidebarWidth.current || "16rem",
               }}
             >
               <h2 className="text-xl font-semibold mb-4">Current Research</h2>
@@ -244,10 +292,14 @@ export default function ResearchPage() {
                 {data.object.map((topic, index) => (
                   <button
                     key={topic.slug}
-                    onClick={() => scrollToTopic(index)} // Scroll to the respective topic
+                    onClick={() =>
+                      topic.slug === "More"
+                        ? scrollToTopic(-1)
+                        : scrollToTopic(index)
+                    }
                     className="block w-full text-left px-3 py-2 text-lg hover:bg-gray-100 rounded-md transition-colors"
                   >
-                    {topic.title} {/* Display topic title from mock data */}
+                    {topic.title}
                   </button>
                 ))}
               </div>
@@ -255,8 +307,13 @@ export default function ResearchPage() {
           </div>
 
           {/* Main Content */}
-          <div ref={mainContentRef} className="flex-1 min-w-0">
-            {/* Loop through each topic to display its content */}
+          <div
+            ref={mainContentRef}
+            className="flex-1 min-w-0"
+            style={{
+              paddingTop: isHeaderFixed ? "5rem" : "1rem", // Adjust top spacing to match header
+            }}
+          >
             <div className="space-y-12">
               {data.object.map((topic, index) => {
                 const highlights = topic.metadata.publications.filter(
@@ -266,13 +323,28 @@ export default function ResearchPage() {
                   (pub) => !pub.metadata.isHighlight
                 );
 
+                if (topic.slug === "More") {
+                  return (
+                    <div key={topic.slug} ref={moreSectionRef} className="py-8">
+                      <div className="px-4 mb-6">
+                        <div className="bg-gray-100 rounded-lg p-8">
+                          <h2 className="text-2xl font-semibold mb-4">
+                            {topic.title}
+                          </h2>
+                        </div>
+                      </div>
+                      <div className="px-4 mb-6">
+                        <More publications={more} />
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div
                     key={topic.slug}
                     ref={(el) => (topicRefs.current[index] = el)}
-                    className="py-8"
                   >
-                    {/* Display Topic Description */}
                     <div className="px-4 mb-6">
                       <ResearchTopic
                         slug={topic.slug}
@@ -280,11 +352,9 @@ export default function ResearchPage() {
                         metadata={topic.metadata}
                       />
                     </div>
-                    {/* Display Highlights */}
                     <div className="px-4 mb-6">
                       <Highlights publications={highlights} />
                     </div>
-                    {/* Display More Publications */}
                     <div className="px-4 mb-6">
                       <More publications={more} />
                     </div>

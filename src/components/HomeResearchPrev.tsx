@@ -3,7 +3,7 @@ import React from 'react';
 export default function HomeResearchPrev(props: any) {
   return (
 
-    <div className="shadow-md bg-gray-200 w-full h-full p-4 rounded-lg space-y-2 group-hover: bg-gray-200
+    <div className="shadow-md bg-gray-200 w-full h-full p-4 rounded-3xl space-y-2 group-hover: bg-gray-200
     transition ease-in-out delay-50 hover:bg-gray-300 flex flex-col justify-center items-center">
         <h4 className='text-center text-lg'>{props.title}</h4>
         <h5 className='text-center text-md'>{props.blurb}</h5>
