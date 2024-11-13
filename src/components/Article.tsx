@@ -16,14 +16,14 @@ export default function Article({ headline, description, date, picture, link }: 
   return (
     <div className="article flex flex-col md:flex-row md:items-center md:items-start sm:items-start sm:mt-6 sm:mb-6 md:mt-12 md:mb-12 md:space-x-8 space-y-5 md:space-y-0">
       {/* date */}
-      <div className="flex align-middle sm:flex-row md:flex-col space-x-1.5 md:space-x-0 md:space-y-1">
-        <p className="text-2xl md:text-5xl md:font-bold" style={{ color: "#D55E36" }}>
+      <div className="flex sm:flex-row md:flex-col space-x-1.5 md:space-x-0 md:space-y-1">
+        <p className="text-2xl md:text-5xl sm:text-2xl lg:text-5xl font-normal md:font-bold" style={{ color: "#D55E36" }}>
           {date.day}
         </p>
-        <p className="text-2xl leading-tight" style={{ color: "#D55E36" }}>
+        <p className="text-2xl leading-1 font-normal" style={{ color: "#D55E36" }}>
           {date.month}
         </p>
-        <p className="text-2xl leading-tight" style={{ color: "#D55E36" }}>
+        <p className="text-2xl leading-1 font-normal" style={{ color: "#D55E36" }}>
           {date.year}
         </p>
       </div>

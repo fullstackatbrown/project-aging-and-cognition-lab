@@ -11,20 +11,6 @@
     justify-content: flex-start;
   }
   
-  .article h2 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    margin-top: 5px; 
-  }
-
-  .article h3{
-    font-size: 1rem; 
-  }
-  
-  .article p {
-    line-height: 1.4;
-  }
-
   .article img{
     width: 9rem;
     height: 9rem; 
@@ -50,6 +36,23 @@
     text-overflow: ellipsis;
     word-break: break-word; 
   }
+
+  /* Change the text-container so the text can be more than 3 lines on small devices */
+
+  /* small devices */
+  @media (max-width: 600px) {
+      .text-container p {
+          -webkit-line-clamp: 5;
+      }
+  }
+
+  /* very small devices */
+  @media (max-width: 400px) {
+      .text-container p {
+          -webkit-line-clamp: 8; 
+      }
+  }
+
   
   
   
