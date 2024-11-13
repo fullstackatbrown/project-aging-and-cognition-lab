@@ -12,22 +12,50 @@ interface ArticleProps {
   picture: string;
   link: string;
 }
-
 export default function Article({ headline, description, date, picture, link }: ArticleProps) {
   return (
-    <div className="article flex flex-col md:flex-row mx-5 md:mx-10 justify-center md:justify-start items-center md:items-start space-y-5 md:space-y-0">
-      <div className="flex flex-col items-center md:items-start md:m-auto md:mx-5">
-      <p className="text-3xl md:text-4xl font-bold">{date.day}</p>
-        <p>{date.month}</p>
-        <p>{date.year}</p>
+    <div className="article flex flex-col lg:flex-row items-start md:mx-5 mx-10 space-y-5 md:space-y-8 lg:space-x-8 sm:mt-6 sm:mb-6 md:mt-12 md:mb-12">
+      {/* date */}
+      <div className="flex sm:flex-row md:flex-row lg:flex-col space-x-1.5 lg:space-y-1">
+        <p className="text-2xl lg:text-5xl lg:font-bold" style={{ color: "#D55E36" }}>
+          {date.day}
+        </p>
+        <p className="text-2xl leading-tight" style={{ color: "#D55E36" }}>
+          {date.month}
+        </p>
+        <p className="text-2xl leading-tight" style={{ color: "#D55E36" }}>
+          {date.year}
+        </p>
       </div>
-      <img src={picture} alt={headline} className="w-40 h-40 md:w-60 md:h-60 object-cover mx-auto md:mx-0" />
 
-      <div className="flex flex-col text-center md:text-left md:m-auto md:mx-10 space-y-3 md:space-y-5">
-        <h2 className="text-xl md:text-2xl">{headline}</h2>
-        <h3 className="text-base md:text-lg">{description}</h3>
+      {/* image */}
+      <div
+        className="flex flex-shrink sm:flex-start"
+        style={{ width: "159px", height: "139px", flexShrink: 0, display: "flex", alignItems: "center" }}
+      >
+        <img
+          src={picture}
+          alt={headline}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "8px",
+          }}
+        />
+      </div>
+
+      {/* headline and description */}
+      <div className="text-container">
+        <div className="flex flex-col md:flex-row lg:flex-col space-x-0  space-y-5">
+          <div className="flex flex-col justify-center space-y-6">
+            <h2 className="text-xl md:text-2xl" style={{ color: "#D55E36" }}>
+              {headline}
+            </h2>
+            <p className="text-base md:text-lg leading-5">{description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
