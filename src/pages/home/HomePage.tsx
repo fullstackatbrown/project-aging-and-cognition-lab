@@ -81,6 +81,10 @@ export default function HomePage() {
         <div>
           {data ? (
               <>
+                <div className="my-8"><a href="join">
+                  <Button text="Join Us" className=" mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"/>
+                </a></div>
+
                 {/* Hero Section */}
                 <div className="w-full bg-cover bg-center rounded-3xl my-4"
                      style={{backgroundImage: `url(${data.object.metadata.image.url})`}}>
