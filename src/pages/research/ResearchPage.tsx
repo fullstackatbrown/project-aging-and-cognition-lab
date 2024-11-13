@@ -4,6 +4,7 @@ import ResearchTopic from "./components/ResearchTopic";
 import Highlights from "./components/Highlights";
 import More from "./components/More";
 import { APIObject, Publication } from "./Interfaces";
+import { Search } from "lucide-react"; // Import the Search icon from lucide-react
 
 // Define the prop types for PopupOverlay
 interface PopupOverlayProps {
@@ -230,36 +231,38 @@ export default function ResearchPage() {
           >
             {/* Search Bar */}
             <div
-              className="p-4 bg-white rounded-lg shadow-md"
               style={{
                 position: isSidebarFixed ? "sticky" : "relative",
                 top: isHeaderFixed ? "5rem" : "1rem",
                 width: sidebarWidth.current || "16rem",
               }}
             >
-              <div className="relative">
+              <div className="relative flex items-center">
+                {/* Input field with rounded shape */}
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search publications..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  className="flex-1 px-6 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
                       handleSearch();
                     }
                   }}
                 />
+
+                {/* Search button (magnifying glass icon) */}
                 <button
                   onClick={handleSearch}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700"
                 >
-                  Search
+                  <Search size={20} />
                 </button>
               </div>
             </div>
-            {/* Sidebar Navigation */}
 
+            {/* Sidebar Navigation */}
             <div
               ref={sidebarRef}
               className="w-64 bg-gray-50 shadow-md rounded-lg p-4 mt-4"
