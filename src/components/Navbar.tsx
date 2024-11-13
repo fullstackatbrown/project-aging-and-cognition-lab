@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate(); // Use useNavigate for programmatic navigation
-  const logo = require('../assets/image.png');
+  const logo = require('../assets/banner.png');
 
   // Toggle dropdown
   const toggleDropdown = () => {
@@ -29,9 +29,9 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="h-[100px] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center text-[#170303] mx-auto my-5 p-5"
-        style={{ backgroundImage: `url(${logo})` }}
+        className="h-[175px] bg-contain bg-center bg-no-repeat flex flex-col items-left justify-center text-[#170303] mx-auto my-5 p-10"
       >
+        <img src={logo} className="object-contain" alt="Logo"/>
       </header>
 
       <nav className="flex justify-center bg-gray-200 py-3">
