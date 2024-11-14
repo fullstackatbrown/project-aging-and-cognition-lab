@@ -18,7 +18,13 @@ interface DataObject {
 }
 
 interface Metadata {
+  members: LabMember[];
+  alumni: LabMember[];
+}
+
+interface LabMember {
   role: string;
+  name: string;
   bio: string;
   photo: Image;
   email: string;
@@ -30,7 +36,37 @@ interface Image {
 }
 
 export default function MembersPage() {
-  const [data, setData] = useState<APIObject | undefined>();
+  const [membersData, setMembersData] = useState<LabMember[] | undefined>();
+  const [alumniData, setAlumniData] = useState<LabMember[] | undefined>();
+
+  function fetchMembersData(): LabMember[] {
+    return labMembersMockData.object.metadata.members as LabMember[];
+  }
+
+  function fetchAlumniData(): LabMember[] {
+    return labMembersMockData.object.metadata.alumni as LabMember[];
+  }
+
+  // may need to change to update when cms is updated
+  useEffect(() => {
+    const jsonData = fetchMembersData();
+    setMembersData(jsonData);
+  }, []);
+
+  useEffect(() => {
+    const jsonData = fetchAlumniData();
+    setAlumniData(jsonData);
+  }, []);
+
+  const getCurrentMembers = () => {
+    if (!membersData) return [];
+    return membersData;
+  };
+
+  const getCurrentAlumni = () => {
+    if (!alumniData) return [];
+    return alumniData;
+  };
 
   <div>
     <header className="header">
@@ -67,85 +103,35 @@ export default function MembersPage() {
     </main>
   </div>;
 
-  /*
-
-These are the if statements for displaying data:
-
-if (object.metadata.role == “Principle Investigator”) {
-	print(“Dr.” + object.title); //accesses the value stored in title
-}
-
-if (object.metadata.role == “PhD”) {
-	print(“Dr.” + object.title); //accesses the value stored in title
-}
-
-if (object.metadata.role == “Graduates”) {
-	print(object.title); //accesses the value stored in title
-}
-
-if (object.metadata.role == “Undergraduates”) {
-	print(object.title); //accesses the value stored in title
-}
-
-if (object.metadata.role == “Alumni”) {
-	print(object.title); //accesses the value stored in title
-}
-
-
-*/
-
   return (
     <div className="lab-members">
-      <div>
-        <h1 className="text-4xl">Lab Members</h1>
-      </div>
-
-      <Member name="name" description="description"></Member>
-      {/* <div className="member">
-        <div className="flex flex-col">
-          <div className="title">
-            <p>Title</p>
-          </div>
-          <div className="image"></div>
-        </div>
-        <div className="flex flex-col">
-          <h1 className="name">
-            <p>Name</p>
-          </h1>
-          <h2 className="description">
-            <p> Lorem ipsum...</p>
-          </h2>
-        </div>
-      </div> */}
-
       <div className="flex flex-col my-10">
-        <h2 className="text-4xl">Alumni</h2>
+        <h1 className="text-4xl">Lab Members</h1>
+
+        <div className="alumni-section">
+          {getCurrentMembers().map((member, index) => (
+            <Member
+              key={index}
+              name={member.name}
+              role={member.role}
+              description={member.bio}
+            />
+          ))}
+        </div>
+
+        <h1 className="text-4xl">Alumni</h1>
+
+        <div className="alumni-section">
+          {getCurrentAlumni().map((alumni, index) => (
+            <Alumni
+              key={index}
+              name={alumni.name}
+              role={alumni.role}
+              description={alumni.bio}
+            />
+          ))}
+        </div>
       </div>
-
-      <Alumni name="name" description="description"></Alumni>
-
-      {/* 
-    <div className = "alumni">
-
-      <div className = "flex flex-col">
-          <div className = "image2">
-    
-         </div>
-
-         <div className = "name2">
-            
-            <p> Name </p>
-    
-         </div>
-
-         <div className = "description2">
-           
-            <p> Lorem Ipsum... </p>
-    
-          </div>
-      </div>
-
-    </div> */}
     </div>
   );
 }

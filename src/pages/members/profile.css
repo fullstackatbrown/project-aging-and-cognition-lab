@@ -14,8 +14,8 @@
 }
 
 .image {
-  width: 230px;
-  height: 220px;
+  width: 20vw;
+  height: auto;
   background-color: white;
   margin-top: 17px;
   margin-left: 25px;
@@ -59,4 +59,46 @@
   font-size: 13px;
   margin-left: 50px;
   margin-top: 5px;
+}
+
+.single-alumni {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  height: 30vw;
+  padding: 20px;
+  background-color: gray;
+  border-radius: 30px;
+}
+
+.member-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 20vw;
+  padding: 40px;
+  background-color: gray;
+  border-radius: 30px;
+  margin-top: 20px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo {
+  width: 15vw;
+  height: auto;
+}
+
+.lab-members {
+  margin: 10vw;
 }
