@@ -48,6 +48,7 @@ interface Image {
 export default function HomePage() {
   const [data, setData] = useState<APIObject>();
   const [newsIndex, setNewsIndex] = useState(0);
+  const gradient = require('../../assets/curved_gradient_home.png');
   async function fetchMockData() {
     return mockHomeData;
   }
@@ -78,6 +79,15 @@ export default function HomePage() {
   return (
       <div
           className="App bg-white min-h-screen flex flex-col items-center text-gray-800 font-sans">
+            <div
+      className={'text-center min-h-screen'}
+      style={{
+        backgroundImage: `url(${gradient})`,
+        backgroundSize: 'contain', 
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center bottom', 
+      }}
+    >
         <div>
           {data ? (
               <>
@@ -99,8 +109,6 @@ export default function HomePage() {
                   </div>
                 </div>  
 
-                <div className="w-full bg-gradient-to-b from-cyan-500 to-orange-100">
-
                 {/* Research Section */}
                 <section className="w-full max-w-7xl mx-auto p-8">
                   <h1 className="text-3xl font-semibold mb-4 text-left" style={{color:"var(--base-teal)"}}>Research</h1>
@@ -121,10 +129,10 @@ export default function HomePage() {
                   
                 {/* Publications & News Section */}
                 <section
-                    className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-white shadow-md rounded-3xl my-4">
+                    className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-transparent rounded-3xl my-4">
                   {/* Publications */}
                   <div className="w-full md:w-2/3 space-y-4">
-                    <h2 className="text-2xl font-semibold">Publications</h2>
+                    <h2 className="text-2xl font-semibold" style={{color:"var(--off-white)"}}>Publications</h2>
                     {data.object.metadata.publications.slice(0, 3).map((pub, index) => (
                         <div key={index}
                              className="bg-gray-100 p-4 rounded-3xl shadow transition ease-in-out delay-50 hover:bg-gray-300">
@@ -143,7 +151,7 @@ export default function HomePage() {
                   </div>
                   {/* News */}
                   <div className="w-full md:w-1/3 space-y-4">
-                    <h2 className="text-2xl font-semibold">News</h2>
+                    <h2 className="text-2xl font-semibold" style={{color:"var(--off-white)"}}>News</h2>
                     <div className="flex flex-col space-y-4">
                       {data.object.metadata.news.length > 0 && (
                           <div
@@ -165,7 +173,7 @@ export default function HomePage() {
 
                 {/* Section for Contacts & Info */}
                 <section
-                    className="contacts w-full max-w-7xl mx-auto p-8 border border-gray-300 rounded-lg bg-gray-50 shadow-md my-4 text-left"
+                    className="contacts w-full max-w-7xl mx-auto p-8 rounded-lg bg-transparent my-4 text-left"
                     id="contacts"
                 >
                   <h2 className="text-customTeal text-4xl font-semibold font-sans leading-[1.2] mb-4">
@@ -182,7 +190,7 @@ export default function HomePage() {
                   <p className="mb-1">Call: (401) 863-3347</p>
                   <p>Email: CLPS@brown.edu, agingandcognitionlab@brown.edu</p>
                 </section>
-                </div>
+                
               </>
           ) : (
               <p>Loading...</p>
@@ -190,5 +198,6 @@ export default function HomePage() {
         </div>
 
       </div>
+      </div>  
   );
 }
