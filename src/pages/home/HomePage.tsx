@@ -83,7 +83,7 @@ export default function HomePage() {
       className={'text-center min-h-screen'}
       style={{
         backgroundImage: `url(${gradient})`,
-        backgroundSize: 'contain', 
+        backgroundSize: '100% 55%', 
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom', 
       }}
@@ -92,14 +92,15 @@ export default function HomePage() {
           {data ? (
               <>
                 <div className="my-8"><a href="join">
-                  <Button text="Join Us" className=" mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"/>
+                  <Button text="Join Us" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"/>
                 </a></div>
 
                 {/* Hero Section */}
-                <div className="group w-full bg-cover bg-center rounded-3xl my-4"
+                <div className="p-4">
+                <div className="group w-full bg-cover bg-center rounded-3xl my-6"
                      style={{backgroundImage: `url(${data.object.metadata.image.url})`}}>
                   <div
-                      className="w-full h-full bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-500 flex flex-col justify-center items-center text-white text-center p-48 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                      className="w-full h-screen bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-500 flex flex-col justify-center items-center text-white text-center rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-4 transform group-hover:translate-y-0 transition-transform duration-500">
                       {data.object.metadata.heading}
                     </h1>
@@ -107,11 +108,12 @@ export default function HomePage() {
                       {data.object.metadata.subheading}
                     </p>
                   </div>
+                </div>
                 </div>  
 
                 {/* Research Section */}
-                <section className="w-full max-w-7xl mx-auto p-8">
-                  <h1 className="text-3xl font-semibold mb-4 text-left" style={{color:"var(--base-teal)"}}>Research</h1>
+                <section className="w-full mx-auto p-20 my-20">
+                  <h2 className="text-4xl font-semibold mb-4 text-left" style={{color:"var(--base-teal)"}}>Research</h2>
                   <div className="flex flex-wrap grid grid-flow-col justify-stretch space-x-4">
                     {Array.from({length: 3}).map((_, i) => (
                         <div key={i} className="w-auto flex justify-center">
@@ -129,10 +131,10 @@ export default function HomePage() {
                   
                 {/* Publications & News Section */}
                 <section
-                    className="w-full max-w-7xl mx-auto p-8 flex flex-col md:flex-row gap-8 bg-transparent rounded-3xl my-4">
+                    className="w-full mx-auto p-20 flex flex-col md:flex-row gap-8 bg-transparent rounded-3xl my-4">
                   {/* Publications */}
                   <div className="w-full md:w-2/3 space-y-4">
-                    <h2 className="text-2xl font-semibold" style={{color:"var(--off-white)"}}>Publications</h2>
+                    <h2 className="text-4xl font-semibold text-left" style={{color:"var(--off-white)"}}>Publications</h2>
                     {data.object.metadata.publications.slice(0, 3).map((pub, index) => (
                         <div key={index}
                              className="bg-gray-100 p-4 rounded-3xl shadow transition ease-in-out delay-50 hover:bg-gray-300">
@@ -151,7 +153,7 @@ export default function HomePage() {
                   </div>
                   {/* News */}
                   <div className="w-full md:w-1/3 space-y-4">
-                    <h2 className="text-2xl font-semibold" style={{color:"var(--off-white)"}}>News</h2>
+                    <h2 className="text-4xl font-semibold text-left" style={{color:"var(--off-white)"}}>News</h2>
                     <div className="flex flex-col space-y-4">
                       {data.object.metadata.news.length > 0 && (
                           <div
@@ -173,7 +175,7 @@ export default function HomePage() {
 
                 {/* Section for Contacts & Info */}
                 <section
-                    className="contacts w-full max-w-7xl mx-auto p-8 rounded-lg bg-transparent my-4 text-left"
+                    className="contacts w-full mx-auto p-20 rounded-lg bg-transparent my-4 text-left"
                     id="contacts"
                 >
                   <h2 className="text-customTeal text-4xl font-semibold font-sans leading-[1.2] mb-4">
