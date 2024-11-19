@@ -20,7 +20,8 @@ export const mockResearchData: APIObject = {
             metadata: {
               title: "Highlight Title 1",
               description: "Highlighted Description 1.",
-              image: "1.jpg",
+              image:
+                "https://preview.redd.it/sad-hamster-amigurumi-v0-2lw7he0x7sqc1.jpg?width=199&format=pjpg&auto=webp&s=ee87b0412531e34cc1b4dcf5b548cdb954b276f8",
               isHighlight: true,
               link: "https://example.com/publication-1",
             },

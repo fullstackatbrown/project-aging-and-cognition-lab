@@ -34,11 +34,13 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
   return (
     <div
       onClick={onClose} // Close popup when clicking on the background
-      className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-opacity-75 flex justify-center items-center z-50"
+      style={{ backgroundColor: "var(--dark-teal)", opacity: 0.75 }} // Use CSS variable for background color
     >
       <div
         onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
-        className="bg-white rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
+        className="rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
+        style={{ backgroundColor: "var(--off-white)", opacity: 100 }} // Use CSS variable for background color
       >
         {/* Header section with title and close button */}
         <div className="flex justify-between items-center pb-4 border-b border-gray-300">
@@ -327,13 +329,6 @@ export default function ResearchPage() {
                   return (
                     <div key={topic.slug} ref={moreSectionRef} className="py-8">
                       <div className="px-4 mb-6">
-                        <div className="bg-gray-100 rounded-lg p-8">
-                          <h2 className="text-2xl font-semibold mb-4">
-                            {topic.title}
-                          </h2>
-                        </div>
-                      </div>
-                      <div className="px-4 mb-6">
                         <More publications={more} />
                       </div>
                     </div>
@@ -345,17 +340,17 @@ export default function ResearchPage() {
                     key={topic.slug}
                     ref={(el) => (topicRefs.current[index] = el)}
                   >
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 mb-12">
                       <ResearchTopic
                         slug={topic.slug}
                         title={topic.title}
                         metadata={topic.metadata}
                       />
                     </div>
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 my-12">
                       <Highlights publications={highlights} />
                     </div>
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 my-12">
                       <More publications={more} />
                     </div>
                   </div>
