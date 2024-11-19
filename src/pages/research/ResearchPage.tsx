@@ -34,11 +34,13 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
   return (
     <div
       onClick={onClose} // Close popup when clicking on the background
-      className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-opacity-75 flex justify-center items-center z-50"
+      style={{ backgroundColor: "var(--dark-teal)", opacity: 0.75 }} // Use CSS variable for background color
     >
       <div
         onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
-        className="bg-white rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
+        className="rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
+        style={{ backgroundColor: "var(--off-white)", opacity: 100 }} // Use CSS variable for background color
       >
         {/* Header section with title and close button */}
         <div className="flex justify-between items-center pb-4 border-b border-gray-300">
@@ -95,41 +97,24 @@ export default function ResearchPage() {
     Publication[]
   >([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
-  const [isSidebarFixed, setIsSidebarFixed] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  const [sidebarHeight, setSidebarHeight] = useState<number | null>(null); // State to store sidebar height
+  const [sidebarHeight, setSidebarHeight] = useState<number | null>(null);
 
   // Create refs for each topic
   const topicRefs = useRef<(HTMLDivElement | null)[]>([]);
   const moreSectionRef = useRef<HTMLDivElement | null>(null); // Ref for the "More" section
 
-  const headerRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const mainContentRef = useRef<HTMLDivElement>(null);
-  const headerInitialTop = useRef<number | null>(null);
-  const sidebarInitialTop = useRef<number | null>(null);
-  const sidebarWidth = useRef<number | null>(null);
+  // New state for sidebar position tracking
+  const [isFixed, setIsFixed] = useState(false);
+  const [sidebarTop, setSidebarTop] = useState(0);
 
-  // Function to calculate initial positions of header and sidebar
-  const updateInitialPositions = () => {
-    if (headerRef.current && sidebarRef.current) {
-      const scrollY = window.scrollY;
-
-      // Get the initial positions without scrolling to top
-      const headerRect = headerRef.current.getBoundingClientRect();
-      const sidebarRect = sidebarRef.current.getBoundingClientRect();
-
-      headerInitialTop.current = headerRect.top + scrollY;
-      sidebarInitialTop.current = sidebarRect.top + scrollY;
-      sidebarWidth.current = sidebarRef.current.offsetWidth;
-
-      setIsHeaderFixed(scrollY > (headerInitialTop.current || 0));
-      setIsSidebarFixed(scrollY > (sidebarInitialTop.current || 0));
-      setIsInitialized(true);
-    }
+  const cardStyle = {
+    borderTop: "1px solid #FFFFFF",
+    borderLeft: "1px solid #FFFFFF",
+    borderRight: "1px solid #E88F3D",
+    borderBottom: "1px solid #E88F3D",
+    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.35)",
   };
 
   useEffect(() => {
@@ -144,19 +129,29 @@ export default function ResearchPage() {
       }
     }
     fetchData();
-    setIsInitialized(false);
+    // Get initial sidebar position
+    const updateSidebarPosition = () => {
+      if (sidebarRef.current) {
+        const rect = sidebarRef.current.getBoundingClientRect();
+        setSidebarTop(rect.top + window.scrollY);
+      }
+    };
+
+    // Update sidebar position after content loads
+    const timer = setTimeout(updateSidebarPosition, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   // Initialize measurements after data is loaded
   useEffect(() => {
-    if (!loading && data && !isInitialized) {
-      const initTimer = setTimeout(() => {
-        updateInitialPositions();
-      }, 100); // Small delay to ensure DOM is ready
-
-      return () => clearTimeout(initTimer);
-    }
-  }, [loading, data, isInitialized]);
+    const handleScroll = () => {
+      if (sidebarTop) {
+        setIsFixed(window.scrollY > sidebarTop);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sidebarTop]);
 
   // Track the height of the main content and update sidebar height
   useEffect(() => {
@@ -165,37 +160,6 @@ export default function ResearchPage() {
       setSidebarHeight(mainContentHeight); // Set sidebar height to match main content
     }
   }, [data]); // Triggered when data changes and component is re-rendered
-
-  // Scroll and resize handling
-  useEffect(() => {
-    if (!isInitialized) return;
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-
-      if (sidebarInitialTop.current !== null) {
-        const shouldFixSidebar =
-          scrollPosition > sidebarInitialTop.current - 20; // Added offset for smoother transition
-        setIsSidebarFixed(shouldFixSidebar);
-      }
-
-      if (headerInitialTop.current !== null) {
-        setIsHeaderFixed(scrollPosition > headerInitialTop.current);
-      }
-    };
-
-    const handleResize = () => {
-      setIsInitialized(false);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isInitialized]);
 
   const scrollToTopic = (index: number) => {
     if (index === -1) {
@@ -227,7 +191,6 @@ export default function ResearchPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Popup Overlay */}
       <PopupOverlay
         isOpen={isPopupOpen}
         onClose={closePopup}
@@ -236,59 +199,72 @@ export default function ResearchPage() {
 
       <div className="max-w-7xl mx-auto px-4 pt-4">
         <div className="flex gap-8">
+          {/* Sidebar Container */}
           <div
             style={{
-              width: sidebarWidth.current || "16rem",
+              width: "16rem",
               flexShrink: 0,
               height: sidebarHeight || "auto",
-              position: "relative", // Added to contain the fixed sidebar
+              position: "relative",
             }}
           >
-            {/* Search Bar */}
-            <div
-              style={{
-                position: isSidebarFixed ? "sticky" : "relative",
-                top: isHeaderFixed ? "5rem" : "1rem",
-                width: sidebarWidth.current || "16rem",
-              }}
-            >
-              <div className="relative flex items-center">
-                {/* Input field with rounded shape */}
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search publications..."
-                  className="flex-1 px-6 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      handleSearch();
-                    }
-                  }}
-                />
-
-                {/* Search button (magnifying glass icon) */}
-                <button
-                  onClick={handleSearch}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700"
-                >
-                  <Search size={20} />
-                </button>
-              </div>
-            </div>
-
-            {/* Sidebar Navigation */}
+            {/* Sidebar Content */}
             <div
               ref={sidebarRef}
-              className="w-64 bg-gray-50 shadow-md rounded-lg p-4 mt-4"
+              className="w-72"
               style={{
-                position: isSidebarFixed ? "sticky" : "relative",
-                top: isHeaderFixed ? "5rem" : "1rem", // Adjust top spacing to match header
-                width: sidebarWidth.current || "16rem",
+                position: isFixed ? "fixed" : "static",
+                top: isFixed ? "20px" : "auto",
+                width: "16rem",
+                transition: "all 0.3s ease",
               }}
             >
-              <h2 className="text-xl font-semibold mb-4">Current Research</h2>
-              <div className="space-y-3">
+              {/* Search Bar */}
+              <div className="mb-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search Publications"
+                    style={{
+                      // "--tw-ring-color": "var(--base-teal)",
+                      borderColor: "var(--base-teal)",
+                      color: "var(--dark-teal)",
+                    }}
+                    className="w-full px-6 py-2 rounded-full border-2 placeholder-teal-600 focus:outline-none focus:ring-2 focus:border-transparent"
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        handleSearch();
+                      }
+                    }}
+                  />
+                  <button
+                    onClick={handleSearch}
+                    style={{ color: "var(--base-teal)" }}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 hover:opacity-80"
+                  >
+                    <Search size={20} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation Section */}
+              <div className="space-y-2">
+                {/* Current Research Header */}
+                <div
+                  className="bg-white shadow-md p-4 border"
+                  style={{ ...cardStyle, backgroundColor: "white" }}
+                >
+                  <h2
+                    style={{ color: "var(--base-teal)" }}
+                    className="text-2xl font-medium"
+                  >
+                    Current Research
+                  </h2>
+                </div>
+
+                {/* Navigation Items */}
                 {data.object.map((topic, index) => (
                   <button
                     key={topic.slug}
@@ -297,24 +273,23 @@ export default function ResearchPage() {
                         ? scrollToTopic(-1)
                         : scrollToTopic(index)
                     }
-                    className="block w-full text-left px-3 py-2 text-lg hover:bg-gray-100 rounded-md transition-colors"
+                    className="w-full bg-white shadow-md p-4 text-left hover:bg-gray-50 transition-colors border border-gray-100"
+                    style={{ ...cardStyle, backgroundColor: "white" }}
                   >
-                    {topic.title}
+                    <span
+                      style={{ color: "var(--base-teal)" }}
+                      className="text-lg"
+                    >
+                      {topic.title}
+                    </span>
                   </button>
                 ))}
               </div>
-              
             </div>
           </div>
 
           {/* Main Content */}
-          <div
-            ref={mainContentRef}
-            className="flex-1 min-w-0"
-            style={{
-              paddingTop: isHeaderFixed ? "5rem" : "1rem", // Adjust top spacing to match header
-            }}
-          >
+          <div ref={mainContentRef} className="flex-1 min-w-0">
             <div className="space-y-12">
               {data.object.map((topic, index) => {
                 const highlights = topic.metadata.publications.filter(
@@ -328,13 +303,13 @@ export default function ResearchPage() {
                   return (
                     <div key={topic.slug} ref={moreSectionRef} className="py-8">
                       <div className="px-4 mb-6">
-                        <div className="bg-gray-100 rounded-lg p-8">
+                        {/* <div className="bg-gray-100 rounded-lg p-8">
                           <h2 className="text-2xl font-semibold mb-4">
                             {topic.title}
                           </h2>
                         </div>
                       </div>
-                      <div className="px-4 mb-6">
+                      <div className="px-4 mb-6"> */}
                         <More publications={more} />
                       </div>
                     </div>
@@ -346,17 +321,17 @@ export default function ResearchPage() {
                     key={topic.slug}
                     ref={(el) => (topicRefs.current[index] = el)}
                   >
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 mb-12">
                       <ResearchTopic
                         slug={topic.slug}
                         title={topic.title}
                         metadata={topic.metadata}
                       />
                     </div>
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 my-12">
                       <Highlights publications={highlights} />
                     </div>
-                    <div className="px-4 mb-6">
+                    <div className="mx-6 my-12">
                       <More publications={more} />
                     </div>
                   </div>
