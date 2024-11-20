@@ -83,9 +83,9 @@ export default function HomePage() {
       className={'text-center min-h-screen'}
       style={{
         backgroundImage: `url(${gradient})`,
-        backgroundSize: 'contain', 
+        backgroundSize: '100% 55%', 
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center bottom', 
+        backgroundPosition: 'center bottom',
       }}
     >
         <div>
@@ -110,10 +110,10 @@ export default function HomePage() {
                   </div>
                 </div>
                 </div>  
-
+{/* "var(--base-teal)" */}
                 {/* Research Section */}
-                <section className="w-full mx-auto px-20 mb-20 mt-28 space-y-8">
-                  <h2 className="text-5xl font-semibold mb-4 text-left" style={{color:"var(--base-teal)"}}>Research</h2>
+                <section className="w-full mx-auto px-20 mb-20 mt-28 space-y-8"> 
+                  <h2 className="text-5xl font-semibold mb-4 text-left" style={{color: "var(--base-teal)"}}>Research</h2>
                   <div className="flex flex-wrap grid grid-flow-col justify-stretch space-x-8">
                     {Array.from({length: 3}).map((_, i) => (
                         <div key={i} className="w-auto flex justify-center">
