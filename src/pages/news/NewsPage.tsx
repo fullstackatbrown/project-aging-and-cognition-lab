@@ -76,7 +76,7 @@ function NewsPage() {
   return (
     <div className="flex flex-col my-10 mx-10 md:mx-20 lg:mx-32">
       <div>
-        <h1 className="text-3xl md:text-5xl mx-4 md:mx-10 mb-6 mt-6 md:mb-8 md:mt-12 font-normal" style={{ color: "#D55E36" }}>News</h1>
+        <h1 className="text-4xl md:text-5xl mx-4 md:mx-10 mb-6 mt-6 md:mb-8 md:mt-12 font-normal" style={{ color: "#327575" }}>News</h1>
       </div>
       <div>
         {data ? (
@@ -125,7 +125,7 @@ function NewsPage() {
                 disabled={currentPage === 1}
                 className="p-2 text-white rounded disabled:opacity-50"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="size-12">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#327575" className="size-12">
                   <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
                 </svg>
               </button>

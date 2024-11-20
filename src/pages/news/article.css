@@ -15,8 +15,8 @@
     width: 9rem;
     height: 9rem; 
     border-radius: 10px;
-    border-color: black;
-    border-width: 2px;
+    /* border-color: black;
+    border-width: 2px; */
   }
   
   .article a {
