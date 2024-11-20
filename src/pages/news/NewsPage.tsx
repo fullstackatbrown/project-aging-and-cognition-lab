@@ -76,13 +76,13 @@ function NewsPage() {
   return (
     <div className="flex flex-col my-10 mx-10 md:mx-20 lg:mx-32">
       <div>
-        <h1 className="text-3xl md:text-5xl mx-6 mb-6 mt-6 md:mb-8 md:mt-12" style={{ color: "#D55E36" }}>News</h1>
+        <h1 className="text-3xl md:text-5xl mx-4 md:mx-10 mb-6 mt-6 md:mb-8 md:mt-12 font-normal" style={{ color: "#D55E36" }}>News</h1>
       </div>
       <div>
         {data ? (
           <>
             {/* <h2>{data.object.metadata.heading}</h2> */}
-            <div className="flex flex-col my-4 items-center">
+            <div className="flex flex-col my-4 mx-4 md:mx-10 items-center">
               {getCurrentPageArticles().map((article, index) => (
                 <div
                   key={index}
