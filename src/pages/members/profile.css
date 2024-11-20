@@ -1,62 +1,133 @@
-.member{
+.member {
   width: 1250px;
   height: 370px;
-  background-color: #cac9c9;
+  background-color: #d9d3d3;
   margin-left: 0px;
-  margin-top: 20px;
+  margin-top:20px;
   display: flex;
 }
 
-.title{
+.title {
   font-size: 28px;
   margin-left: 40px;
-  padding-top:30px;
-}
-
-.image{
-    width: 230px;
-    height: 220px;
-    background-color: white;
-    margin-top:17px;
-    margin-left:25px;
-}
-
-.name{
-    font-size: 18px;
-    margin-left: 50px;
-    margin-top:75px;
-}
-
-.description{
-  font-size: 18px;
-  margin-left: 50px;
+  padding-top: 30px;
   margin-top:20px;
 }
 
-.alumni{
-    width: 325px;
-    height:325px;
-    background-color: #cac9c9;
-    margin-left: 0px;
-    display: flex;
+.image {
+  width: 20vw;
+  height: auto;
+  background-color: rgb(221, 213, 213);
+  margin-left: 25px;
 }
 
-.image2{
-    width: 175px;
-    height: 175px;
-    background-color: white;
-    margin-left:70px;
-    margin-top:25px;
+.alumni-name {
+  font-size: 18px;
+  margin-left: 50px;
+  margin-top: 75px;
 }
 
-.name2{
+.description {
+  font-size: 18px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.alumni {
+  width: 325px;
+  height: 325px;
+  background-color: #b2acac;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.image2 {
+  width: 175px;
+  height: 175px;
+  background-color: rgb(216, 205, 205);
+  margin-left: 70px;
+  margin-top: 25px;
+}
+
+.name2 {
   font-size: 17px;
-  margin-left:50px;
-  margin-top:15px;
+  margin-left: 50px;
+  margin-top: 15px;
 }
 
-.description2{
+.description2 {
   font-size: 13px;
-  margin-left:50px;
-  margin-top:5px;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+
+.single-alumni {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 21vw;
+  height: 30vw;
+  padding:20px;
+  background-color: #327575;
+  border-radius: 30px;
+  margin-left:100px;
+  margin-top:35px;
+}
+
+.single-alumni h2{
+  text-align:left;
+  font-size: 35px;
+  font-weight:bold;
+}
+
+.member-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 20vw;
+  padding: 20px;
+  background-color: #F1DDCE;
+  border-radius: 30px;
+  margin-top:20px;
+}
+
+.member-card h2{
+  text-align:left;
+  font-size:35px;
+}
+
+.member-card .description h2{
+  text-align:left;
+  font-size:35px;
+  font-weight: bold;
+  margin-top:-160px
+
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo {
+  width: 15vw;
+  margin-left: 35px;
+  height: auto;
+}
+
+.lab-members {
+  margin: 10vw;
+  margin-top:25px;
+}
+
+.alumni-section{
+  display:flex;
+  flex-wrap: wrap;
 }
