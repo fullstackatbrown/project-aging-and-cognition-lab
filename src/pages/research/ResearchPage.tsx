@@ -34,13 +34,13 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
   return (
     <div
       onClick={onClose} // Close popup when clicking on the background
-      className="fixed inset-0 bg-opacity-75 flex justify-center items-center z-50"
-      style={{ backgroundColor: "var(--dark-teal)", opacity: 0.75 }} // Use CSS variable for background color
+      className="fixed inset-0 flex justify-center items-center z-50"
+      style={{ backgroundColor: "rgba(0, 128, 128, 0.75)" }} // Use CSS variable for background color
     >
       <div
         onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside the box
         className="rounded-lg w-full min-w-[300px] max-w-6xl mx-8 my-8 px-6 py-4 max-h-[80vh] overflow-hidden flex flex-col"
-        style={{ backgroundColor: "var(--off-white)", opacity: 100 }} // Use CSS variable for background color
+        style={{ backgroundColor: "var(--off-white)" }} // Use CSS variable for background color
       >
         {/* Header section with title and close button */}
         <div className="flex justify-between items-center pb-4 border-b border-gray-300">
@@ -57,17 +57,23 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
         {/* Scrollable content area for publications */}
         <div className="overflow-y-auto flex-1 mt-4">
           {publications.length > 0 ? (
-            <ul className="space-y-2">
+            <ul className="space-y-4">
               {publications.map((pub) => (
-                <li key={pub.slug} className="border-b pb-2">
+                <li
+                  key={pub.slug}
+                  className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  style={{ backgroundColor: "var(--off-white)" }} // Ensure the background is off-white
+                >
                   <a
                     href={pub.metadata.link} // Link to the publication
                     target="_blank" // Open link in new tab
                     rel="noopener noreferrer" // Security best practices
-                    className="block cursor-pointer" // Full-width clickable area
+                    className="block cursor-pointer"
                   >
-                    <h3 className="font-semibold">{pub.metadata.title}</h3>
-                    <p>{pub.metadata.description}</p>
+                    <h3 className="font-semibold text-lg mb-2">
+                      {pub.metadata.title}
+                    </h3>
+                    <p className="text-gray-700">{pub.metadata.description}</p>
                   </a>
                 </li>
               ))}
@@ -112,9 +118,9 @@ export default function ResearchPage() {
   const cardStyle = {
     borderTop: "1px solid #FFFFFF",
     borderLeft: "1px solid #FFFFFF",
-    borderRight: "1px solid #E88F3D",
-    borderBottom: "1px solid #E88F3D",
-    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.35)",
+    borderRight: "1px solid #E3C6B1",
+    borderBottom: "1px solid #E3C6B1",
+    boxShadow: "2px 2px 4px rgba(227, 198, 177, 0.75)",
   };
 
   useEffect(() => {
@@ -252,17 +258,17 @@ export default function ResearchPage() {
               {/* Navigation Section */}
               <div className="space-y-2">
                 {/* Current Research Header */}
-                <div
-                  className="bg-white shadow-md p-4 border"
+                <button
+                  className="w-full bg-white shadow-md p-4 text-left hover:bg-gray-50 transition-colors border border-gray-100"
                   style={{ ...cardStyle, backgroundColor: "white" }}
                 >
-                  <h2
+                  <span
                     style={{ color: "var(--base-teal)" }}
-                    className="text-2xl font-medium"
+                    className="text-lg"
                   >
                     Current Research
-                  </h2>
-                </div>
+                  </span>
+                </button>
 
                 {/* Navigation Items */}
                 {data.object.map((topic, index) => (
@@ -303,14 +309,39 @@ export default function ResearchPage() {
                   return (
                     <div key={topic.slug} ref={moreSectionRef} className="py-8">
                       <div className="px-4 mb-6">
-                        {/* <div className="bg-gray-100 rounded-lg p-8">
-                          <h2 className="text-2xl font-semibold mb-4">
-                            {topic.title}
-                          </h2>
+                        <div>
+                          <div>
+                            <h3
+                              className="text-center text-2xl font-semibold mb-6"
+                              style={{ color: "var(--dark-teal)" }}
+                            >
+                              Other Publications
+                            </h3>
+                          </div>
+                          <div
+                            className="rounded-lg p-8"
+                            style={{ backgroundColor: "var(--base-teal)" }}
+                          >
+                            <div className="space-y-4">
+                              {more.map((pub) => (
+                                <a
+                                  key={pub.slug}
+                                  href={pub.metadata.link} // Link to the publication
+                                  target="_blank" // Open link in new tab
+                                  rel="noopener noreferrer" // Security best practices
+                                  className="block bg-white rounded-lg p-6 cursor-pointer" // Block makes it occupy full width
+                                >
+                                  <h4 className="text-lg font-semibold mb-2">
+                                    {pub.metadata.title}
+                                  </h4>
+                                  <p className="text-gray-600">
+                                    {pub.metadata.description}
+                                  </p>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="px-4 mb-6"> */}
-                        <More publications={more} />
                       </div>
                     </div>
                   );
