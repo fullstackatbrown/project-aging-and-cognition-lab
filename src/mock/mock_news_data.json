@@ -12,91 +12,115 @@
   },
   "articles": [
     {
-      "headline": "Headline 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "John Mertus receives Emmy Award",
+      "description": "Congratulation to John Mertus, a long-time colleague of Dr. Sheila Blumstein and former member of our department! He received an Emmy in October for Engineering, Science & Technology for the development of the DRS™Nova Film and Video Restoration Software.",
       "date": {
-        "day": "9",
-        "month": "October",
+        "day": "19",
+        "month": "November",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://www.eidr.org/assets/EIDR-EMMY-LEAD-scaled.jpg",
       "link": "https://example.com/article1"
     },
     {
-      "headline": "Headline 2",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "Jason Okonofua wins Social and Emotional Learning Leaders of the Year (SELLY) Award",
+      "description": "Dr. Jason Okonofua, a social psychologist in the Department of Cognitive and Psychological Sciences at Brown University, has been awarded the Joseph E. Zins Award for Outstanding Contributions to Action Research in Social and Emotional Learning (SEL). The award is part of the 2024 SELLY Awards, announced by the Collaborative for Academic, Social, and Emotional Learning (CASEL), which honors outstanding achievements in SEL. Dr. Okonofua is one of seven “Social and Emotional Learning Leaders of the Year” recognized for their work advancing the field and paving the way for others.",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "14",
+        "month": "November",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/selly_award_photo.JPG",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 3",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "Come to the Curriculum Discussion with DUS",
+      "description": "The concentration requirements for the Cognitive and Psychological Sciences department are being changed. You are invited to a discussion about the new curriculum with Prof. Dave Sobel, Director of Undergraduate Studies for the department, and other concentration advisors.",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "6",
+        "month": "November",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/Cookies%20%26%20Curriculum.jpg",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 4",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "Andrea Simmons elected as a Fellow to the International Society for Neuroethology",
+      "description": "Congratulations to Andrea Simmons for being elected a Fellow of the International Society for Neuroethology! This honor is bestowed on members of the ISN for their meritorious efforts to advance the science of neuroethology. The award was announced at the Society’s meeting in Berlin in July 2024.",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "30",
+        "month": "September",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/Andrea%20in%20Berlin%20crop.JPG",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 5",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "People navigate social networks same way they navigate transportation networks: by studying maps",
+      "description": "A study by cognitive scientists at Brown University’s Carney Institute for Brain Science deciphered how the human brain represents the complex social connections among acquaintances, friends, and friends of friends.",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "24",
+        "month": "September",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQwIu27ifTSepsrmnXrNOY40eUtdnnvowQ9M6QjtXHUWyJXtU2b",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 6",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "CoPsy Welcomes Six New Faculty",
+      "description": "Starting July 1st, CoPsy is excited to welcome six new faculty members, Dr. Serra Favila, Dr. David Levari, Dr. Julia Marshall, Dr. Jason Okonofua, Dr. Elizabeth Thompson, and Dr. Jamie Trost. We could not be more excited for them to join our faculty and encourage students to check out each of these new faculty member’s research profiles.",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "1",
+        "month": "September",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/2024-08/Screen%20Shot%202024-08-14%20at%203.57.50%20PM_1.png",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 7",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "Jae-Young Son Defends Dissertation",
+      "description": "On August 1st, Jae-Young Son defended his dissertation titled, “Abstraction underlies inferential representation of social networks.” He was supervised by Dr. Oriel FeldmanHall. This fall, he will be starting as a postdoctoral fellow in Dr. Serra Favila’s lab here at Brown. ",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "1",
+        "month": "August",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/2024-08/IMG_5619%20(1).jpeg",
       "link": "https://example.com/article2"
     },
     {
-      "headline": "Headline 8",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "headline": "Mahalia Prater Fahey Defends Dissertation",
+      "description": "On July 15th, Mahalia Prater Fahey successfully defended her dissertation titled, “Considering the Context: How Context Provides Insight into how the Components of Motivation are Shaped.” She completed her research under the supervision of Dr. Amitai Shenhav. ",
       "date": {
-        "day": "8",
-        "month": "October",
+        "day": "15",
+        "month": "July",
         "year": "2024"
       },
-      "picture": "https://wallpapers.com/images/hd/white-square-background-56v690fpm25a3o6s.jpg",
+      "picture": "https://copsy.brown.edu/sites/default/files/2024-08/IMG_4299%20(2)_0.jpg",
+      "link": "https://example.com/article2"
+    }
+    ,
+    {
+      "headline": "Thomas Serre wins Midcareer Research Achievement Award",
+      "description": "Dr. Thomas Serre, a faculty member in the Department of Cognitive and Psychological Sciences, wins the Midcareer Research Achievement Award. This award, given every other year, recognizes a select group of standout scholars who are nominated by their peers for their distinguished and transformative research.",
+      "date": {
+        "day": "2",
+        "month": "May",
+        "year": "2024"
+      },
+      "picture": "https://copsy.brown.edu/sites/default/files/2024-08/Thomas_0.jpg",
+      "link": "https://example.com/article2"
+    }
+    ,
+    {
+      "headline": "‘ScanFest’ sessions teach students the ins and outs of using an MRI machine for research",
+      "description": "As part of a class taught by Brown neuroscientist David Badre, undergraduates embrace the rare opportunity to conduct experiments and engage in research with state-of-the-art MRI technology.",
+      "date": {
+        "day": "2",
+        "month": "May",
+        "year": "2024"
+      },
+      "picture": "https://www.brown.edu/sites/default/files/styles/wide_med/public/2024-04/IMG_3198_scanner%20retouched.jpg?h=5a25ad98&itok=_uKhpELp",
       "link": "https://example.com/article2"
     }
   ]
