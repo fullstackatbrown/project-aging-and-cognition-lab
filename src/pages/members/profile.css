@@ -1,9 +1,9 @@
 .member {
   width: 1250px;
   height: 370px;
-  background-color: #cac9c9;
+  background-color: #d9d3d3;
   margin-left: 0px;
-  margin-top: 20px;
+  margin-top:20px;
   display: flex;
 }
 
@@ -11,13 +11,13 @@
   font-size: 28px;
   margin-left: 40px;
   padding-top: 30px;
+  margin-top:20px;
 }
 
 .image {
   width: 20vw;
   height: auto;
-  background-color: white;
-  margin-top: 17px;
+  background-color: rgb(221, 213, 213);
   margin-left: 25px;
 }
 
@@ -36,15 +36,16 @@
 .alumni {
   width: 325px;
   height: 325px;
-  background-color: #cac9c9;
-  margin-left: 0px;
+  background-color: #b2acac;
+  margin-left: 5px;
   display: flex;
+  flex-direction: row;
 }
 
 .image2 {
   width: 175px;
   height: 175px;
-  background-color: white;
+  background-color: rgb(216, 205, 205);
   margin-left: 70px;
   margin-top: 25px;
 }
@@ -65,11 +66,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20vw;
+  width: 21vw;
   height: 30vw;
-  padding: 20px;
-  background-color: gray;
+  padding:20px;
+  background-color: #327575;
   border-radius: 30px;
+  margin-left:100px;
+  margin-top:35px;
 }
 
 .member-body {
@@ -83,10 +86,10 @@
   flex-direction: column;
   width: 80vw;
   height: 20vw;
-  padding: 40px;
-  background-color: gray;
+  padding: 20px;
+  background-color: #F1DDCE;
   border-radius: 30px;
-  margin-top: 20px;
+  margin-top:20px;
 }
 
 .description {
@@ -101,4 +104,10 @@
 
 .lab-members {
   margin: 10vw;
+  margin-top:25px;
+}
+
+.alumni-section{
+  display:flex;
+  flex-wrap: wrap;
 }

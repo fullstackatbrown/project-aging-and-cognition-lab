@@ -64,7 +64,7 @@ export const labMembersMockData = {
           email: "phd_students@brown.edu",
         },
         {
-          role: "alumni",
+          role: "alumni 2",
           name: "name",
           bio: "bio bio bio",
           photo: {
@@ -74,6 +74,50 @@ export const labMembersMockData = {
           },
           email: "phd_students@brown.edu",
         },
+        {
+          role: "alumni 3",
+          name: "name",
+          bio: "bio bio bio",
+          photo: {
+            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+            imgix_url:
+              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+          },
+          email: "phd_students@brown.edu",
+        },
+        {
+        role: "alumni 4",
+          name: "name",
+          bio: "bio bio bio",
+          photo: {
+            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+            imgix_url:
+              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+          },
+          email: "phd_students@brown.edu",
+        },
+        {
+          role: "alumni 5",
+            name: "name",
+            bio: "bio bio bio",
+            photo: {
+              url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+              imgix_url:
+                "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+            },
+            email: "phd_students@brown.edu",
+          },
+          {
+            role: "alumni 6",
+              name: "name",
+              bio: "bio bio bio",
+              photo: {
+                url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+                imgix_url:
+                  "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+              },
+              email: "phd_students@brown.edu",
+            },
       ],
     },
   },
