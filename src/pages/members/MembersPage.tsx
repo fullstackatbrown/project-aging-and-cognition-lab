@@ -119,17 +119,19 @@ export default function MembersPage() {
           ))}
         </div>
 
-        <h1 className="text-4xl">Alumni</h1>
-
         <div className="alumni-section">
-          {getCurrentAlumni().map((alumni, index) => (
-            <Alumni
-              key={index}
-              name={alumni.name}
-              role={alumni.role}
-              description={alumni.bio}
-            />
-          ))}
+          <h1 className="text-4xl">Alumni</h1>
+
+          <div className="all-alumni">
+            {getCurrentAlumni().map((alumni, index) => (
+              <Alumni
+                key={index}
+                name={alumni.name}
+                role={alumni.role}
+                description={alumni.bio}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
