@@ -83,7 +83,7 @@ export default function HomePage() {
       className={'text-center min-h-screen'}
       style={{
         backgroundImage: `url(${gradient})`,
-        backgroundSize: '100% 63%', 
+        backgroundSize: '100% 55%', 
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom',
       }}
