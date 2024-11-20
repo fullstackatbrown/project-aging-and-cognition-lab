@@ -16,11 +16,11 @@ export default function Highlights({ publications }: HighlightsProps) {
           href={pub.metadata.link} // Link to the publication
           target="_blank" // Open link in new tab
           rel="noopener noreferrer" // Security best practices
-          className="flex gap-8 rounded-lg mb-4 cursor-pointer" // Full-width clickable area
+          className="flex gap-8 rounded-lg mb-4 cursor-pointer items-start" // Full-width clickable area
         >
-          <div className="w-48 h-48 flex-shrink-0">
+          <div className="w-48 h-48 flex-shrink-0 py-3">
             <img
-              className="w-full h-full object-cover rounded-lg"
+              className="object-cover rounded-lg"
               src={pub.metadata.image} // Assuming you want to use the publication image
               alt={pub.metadata.title}
             />
