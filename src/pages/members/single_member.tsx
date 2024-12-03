@@ -7,6 +7,7 @@ export interface MemberProps {
   name: string;
   role: string;
   description: string;
+  photo: string;
 }
 
 export function Member(props: MemberProps) {
@@ -15,11 +16,7 @@ export function Member(props: MemberProps) {
       <h2 aria-label="lab member role">{props.role}</h2>
 
       <div className="member-body">
-        <img
-          src="https://pngimg.com/d/square_PNG17.png"
-          alt="lab member picture"
-          className="photo"
-        />
+        <img src={props.photo} alt="lab member picture" className="photo" />
         <div className="description">
           <h2 aria-label="lab member name">{props.name}</h2>
           <p aria-label="lab member description">{props.description}</p>
