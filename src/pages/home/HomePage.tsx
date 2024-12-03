@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { mockHomeData } from "../../mock/example_mock_data";
+import { mockResearchData } from "../../mock/research_mock";
 import HomeResearchPrev from "../../components/HomeResearchPrev";
 import Publication from "../../components/Publication";
 import Button from "../../components/Button";
@@ -8,6 +9,12 @@ import Button from "../../components/Button";
 
 interface APIObject {
   object: DataObject;
+}
+
+interface Research {
+  title: string;
+  blurb: string;
+  image: string;
 }
 
 interface Publication {
@@ -37,6 +44,7 @@ interface Metadata {
   hours: string;
   image: Image;
   publications: Publication[];
+  research: Research[];
   news: News[]
 }
 
@@ -115,13 +123,14 @@ export default function HomePage() {
                 <section className="w-full mx-auto px-20 mb-20 mt-28 space-y-8"> 
                   <h2 className="text-5xl font-semibold mb-4 text-left" style={{color: "var(--base-teal)"}}>Research</h2>
                   <div className="flex flex-wrap grid grid-flow-col justify-stretch space-x-8">
-                    {Array.from({length: 3}).map((_, i) => (
-                        <div key={i} className="w-auto flex justify-center">
+                  {data.object.metadata.research.slice(0, 3).map((pub, index) => (
+                        <div key={index}
+                             className="w-auto flex justify-center">
                           <HomeResearchPrev
-                              title={`Research ${i + 1}`}
-                              blurb="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                              imageURL="https://media.tenor.com/Hjd8iHgasxQAAAAe/sad-hamster.png"
-                              className="w-full"
+                              title={pub.title}
+                              blurb={pub.blurb}
+                              imageURL={pub.image}
+                              classname="w-full"
                           />
                         </div>
                     ))}
