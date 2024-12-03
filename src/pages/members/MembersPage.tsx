@@ -26,13 +26,8 @@ interface LabMember {
   role: string;
   name: string;
   bio: string;
-  photo: Image;
+  photo: string;
   email: string;
-}
-
-interface Image {
-  url: string;
-  imgix_url: string;
 }
 
 export default function MembersPage() {
@@ -115,6 +110,7 @@ export default function MembersPage() {
               name={member.name}
               role={member.role}
               description={member.bio}
+              photo={member.photo}
             />
           ))}
         </div>
