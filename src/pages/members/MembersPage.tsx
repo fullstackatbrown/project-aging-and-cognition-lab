@@ -101,7 +101,7 @@ export default function MembersPage() {
   return (
     <div className="lab-members">
       <div className="flex flex-col my-10">
-        <h1 className="text-4xl">Lab Members</h1>
+        <h1>Lab Members</h1>
 
         <div className="members-section">
           {getCurrentMembers().map((member, index) => (
