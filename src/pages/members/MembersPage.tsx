@@ -126,6 +126,7 @@ export default function MembersPage() {
                 name={alumni.name}
                 role={alumni.role}
                 description={alumni.bio}
+                photo={alumni.photo}
               />
             ))}
           </div>
