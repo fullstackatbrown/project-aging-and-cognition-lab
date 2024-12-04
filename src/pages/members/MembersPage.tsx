@@ -111,12 +111,13 @@ export default function MembersPage() {
               role={member.role}
               description={member.bio}
               photo={member.photo}
+              email={member.email}
             />
           ))}
         </div>
 
         <div className="alumni-section">
-          <h1 className="text-4xl">Alumni</h1>
+          <h1>Alumni</h1>
 
           <div className="all-alumni">
             {getCurrentAlumni().map((alumni, index) => (
