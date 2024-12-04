@@ -28,13 +28,20 @@ export default function JoinResearcherPage() {
             alt="Join us as a Researcher!"
             className="mt-4 mb-4 rounded-xl w-full"
           />
-          <p className="text-black text-sm mb-6">
-            {mockJoinData.object.metadata.text.researcher_text}
+          <p className="text-left text-black text-sm mb-6">
+            {mockJoinData.object.metadata.text.researcher_text.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
-          <button 
-            className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition"
-            style={{ border: '2px solid var(--base-teal)' }}>Join as a researcher!
-          </button>
+          <a href={mockJoinData.object.metadata.urls.researcher_url} target="_blank" rel="noreferrer">
+            <button 
+              className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition mb-6"
+              style={{ border: '2px solid var(--base-teal)' }}>Join as a researcher!
+            </button>
+          </a>
         </div>
 
         {/* Participant Column */}
@@ -47,13 +54,20 @@ export default function JoinResearcherPage() {
             alt="Join us as a Participant!"
             className="mt-4 mb-4 rounded-xl w-full"
           />
-          <p className="text-black text-sm mb-6">
-            {mockJoinData.object.metadata.text.participant_text}
+          <p className="text-left text-black text-sm mb-6">
+            {mockJoinData.object.metadata.text.participant_text.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
-          <button 
-            className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition"
-            style={{ border: '2px solid var(--base-teal)' }}>Join as a participant!
-          </button>
+          <a href={mockJoinData.object.metadata.urls.participant_url} target="_blank" rel="noreferrer">
+            <button 
+              className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition mb-6"
+              style={{ border: '2px solid var(--base-teal)' }}>Join as a participant!
+            </button>
+          </a>
         </div>
       </div>
     </div>
