@@ -94,3 +94,7 @@
 .bold {
   font-weight: bold;
 }
+
+.email {
+  color: var(--dark-teal);
+}

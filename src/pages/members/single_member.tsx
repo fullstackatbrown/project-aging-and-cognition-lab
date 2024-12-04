@@ -29,7 +29,9 @@ export function Member(props: MemberProps) {
           <p aria-label="lab member description">{props.description}</p>
           <br></br>
           <p>
-            <a href={makeEmail(props.email)}>{props.email}</a>
+            <a className="email" href={makeEmail(props.email)}>
+              {props.email}
+            </a>
           </p>
         </div>
       </div>
