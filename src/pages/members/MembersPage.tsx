@@ -26,13 +26,8 @@ interface LabMember {
   role: string;
   name: string;
   bio: string;
-  photo: Image;
+  photo: string;
   email: string;
-}
-
-interface Image {
-  url: string;
-  imgix_url: string;
 }
 
 export default function MembersPage() {
@@ -106,7 +101,7 @@ export default function MembersPage() {
   return (
     <div className="lab-members">
       <div className="flex flex-col my-10">
-        <h1 className="text-4xl">Lab Members</h1>
+        <h1>Lab Members</h1>
 
         <div className="members-section">
           {getCurrentMembers().map((member, index) => (
@@ -115,21 +110,25 @@ export default function MembersPage() {
               name={member.name}
               role={member.role}
               description={member.bio}
+              photo={member.photo}
+              email={member.email}
             />
           ))}
         </div>
 
-        <h1 className="text-4xl">Alumni</h1>
-
         <div className="alumni-section">
-          {getCurrentAlumni().map((alumni, index) => (
-            <Alumni
-              key={index}
-              name={alumni.name}
-              role={alumni.role}
-              description={alumni.bio}
-            />
-          ))}
+          <h1>Alumni</h1>
+
+          <div className="all-alumni">
+            {getCurrentAlumni().map((alumni, index) => (
+              <Alumni
+                key={index}
+                name={alumni.name}
+                role={alumni.role}
+                description={alumni.bio}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

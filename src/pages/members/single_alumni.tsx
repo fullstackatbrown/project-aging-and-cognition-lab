@@ -17,9 +17,12 @@ export function Alumni(props: AlumniProps) {
         alt="alumni picture"
         className="photo"
       />
-      <h2 aria-label="alumni name">{props.name}</h2>
-      <h3 aria-label="role">{props.role}</h3>
-      <p aria-label="alumni description">{props.description}</p>
+
+      <div>
+        <h2 aria-label="alumni name">{props.name}</h2>
+        <h3 aria-label="role">{props.role}</h3>
+        <p aria-label="alumni description">{props.description}</p>
+      </div>
     </div>
   );
 }

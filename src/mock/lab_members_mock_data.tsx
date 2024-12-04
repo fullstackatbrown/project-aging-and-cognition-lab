@@ -7,48 +7,28 @@ export const labMembersMockData = {
 
       members: [
         {
-          role: "head researcher",
-          name: "name",
-          bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
-          email: "phd_students@brown.edu",
+          role: "Principle Investigator",
+          name: "Dr. William Heindel",
+          bio: "Professor of Cognitive, Linguistic and Psychological Sciences, Chair of Cognitive, Linguistic and Psychological Sciences",
+          photo:
+            "https://sites.brown.edu/agingandcognition/files/2022/02/Bill_head-245x300.jpg",
+          email: "william_heindel@brown.edu",
         },
         {
-          role: "head researcher",
-          name: "name",
-          bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
-          email: "phd_students@brown.edu",
+          role: "Principle Investigator",
+          name: "Dr. Elena Festa",
+          bio: "Senior Lecturer in Cognitive, Linguistic and Psychological Sciences",
+          photo:
+            "https://sites.brown.edu/agingandcognition/files/2022/02/Elena_head-225x300.jpg",
+          email: "elena_festa@brown.edu",
         },
         {
-          role: "grad researcher",
-          name: "name",
-          bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
-          email: "phd_students@brown.edu",
-        },
-        {
-          role: "undergrad researcher",
-          name: "name",
-          bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
-          email: "phd_students@brown.edu",
+          role: "Postdoctoral Researcher",
+          name: "Dr. Nicole Amichetti",
+          bio: "Dr. Amichetti received her doctorate in Neuroscience from Brandeis University. She is currently at Brown University exploring her research interests in healthy and pathological aging and language processing. Her dog Zeus is also a regular in the lab. ",
+          photo:
+            "https://sites.brown.edu/agingandcognition/files/2018/09/Nikki-24sbrho-e1537543492372.jpg",
+          email: "nicole_amichetti@brown.edu",
         },
       ],
       alumni: [
@@ -56,68 +36,56 @@ export const labMembersMockData = {
           role: "alumni",
           name: "name",
           bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
           email: "phd_students@brown.edu",
         },
         {
           role: "alumni 2",
           name: "name",
           bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
           email: "phd_students@brown.edu",
         },
         {
           role: "alumni 3",
           name: "name",
           bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
           email: "phd_students@brown.edu",
         },
         {
-        role: "alumni 4",
+          role: "alumni 4",
           name: "name",
           bio: "bio bio bio",
-          photo: {
-            url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            imgix_url:
-              "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-          },
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
           email: "phd_students@brown.edu",
         },
         {
           role: "alumni 5",
-            name: "name",
-            bio: "bio bio bio",
-            photo: {
-              url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-              imgix_url:
-                "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-            },
-            email: "phd_students@brown.edu",
-          },
-          {
-            role: "alumni 6",
-              name: "name",
-              bio: "bio bio bio",
-              photo: {
-                url: "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-                imgix_url:
-                  "https://imgix.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
-              },
-              email: "phd_students@brown.edu",
-            },
+          name: "name",
+          bio: "bio bio bio",
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
+          email: "phd_students@brown.edu",
+        },
+        {
+          role: "alumni 6",
+          name: "name",
+          bio: "bio bio bio",
+          photo:
+            "https://cdn.cosmicjs.com/73e81160-86a1-11ef-b5a0-93bdfd801c59",
+
+          email: "phd_students@brown.edu",
+        },
       ],
     },
   },
