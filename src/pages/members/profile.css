@@ -14,10 +14,8 @@
   margin-top: 20px;
 }
 
-.alumni-name {
-  font-size: 18px;
-  margin-left: 50px;
-  margin-top: 75px;
+.alumni-description {
+  margin-top: 30px;
 }
 
 .description {
@@ -27,12 +25,13 @@
 }
 
 .alumni {
-  width: 325px;
+  width: 20vw;
   height: 325px;
   background-color: #b2acac;
   margin-left: 5px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .single-alumni {
@@ -97,4 +96,14 @@
 
 .email {
   color: var(--dark-teal);
+}
+
+@media screen and (max-width: 1000px) {
+  .photo {
+    width: 20vw;
+  }
+
+  .single-alumni {
+    width: 25vw;
+  }
 }
