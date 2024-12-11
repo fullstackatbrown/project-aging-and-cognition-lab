@@ -1,0 +1,58 @@
+.article {
+    /* flex-direction: row;  */
+    /* background-color: #E5E4E2; */
+    /* border-radius: 8px;
+    padding: 20px;
+    width: 100%;  */
+    display: flex; 
+    /* text-align: left; */
+    /* height: 28vh;  */
+    max-width: 2000px;
+    justify-content: flex-start;
+  }
+  
+  .article img{
+    width: 9rem;
+    height: 9rem; 
+    border-radius: 10px;
+    /* border-color: black;
+    border-width: 2px; */
+  }
+  
+  .article a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .text-container p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limit the text to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word; 
+  }
+
+  /* Change the text-container so the text can be more than 3 lines on small devices */
+
+  /* small devices */
+  @media (max-width: 600px) {
+      .text-container p {
+          -webkit-line-clamp: 5;
+      }
+  }
+
+  /* very small devices */
+  @media (max-width: 400px) {
+      .text-container p {
+          -webkit-line-clamp: 8; 
+      }
+  }
+
+  
+  
+  
