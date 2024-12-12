@@ -6,25 +6,26 @@ export interface AlumniProps {
   role: string;
   description: string;
   photo: string;
+  email: string;
 }
 
 export function Alumni(props: AlumniProps) {
   //const alumni1 = require("./photos/Alicia_gradstudent_alum.png");
 
-  const photos: { [key: string]: string } = {
-    alum1: require("./photos/Alicia_gradstudent_alum.png"),
-    alum2: require("./photos/BethKellerman_gradstudent_alum.png"),
-    alum3: require("./photos/Diah_ugrad_alum.png"),
-  };
+  // const photos: { [key: string]: string } = {
+  //   alum1: require("./photos/Alicia_gradstudent_alum.png"),
+  //   alum2: require("./photos/BethKellerman_gradstudent_alum.png"),
+  //   alum3: require("./photos/Diah_ugrad_alum.png"),
+  // };
 
-  function makePhotoURL(photoKey: string): string {
-    return photos[photoKey] || "";
-  }
+  // function makePhotoURL(photoKey: string): string {
+  //   return photos[photoKey] || "";
+  // }
 
   return (
     <div className="single-alumni">
       <img
-        src={makePhotoURL(props.photo)}
+        src={props.photo}
         alt="alumni picture"
         className="photo"
       />

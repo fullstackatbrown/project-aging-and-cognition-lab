@@ -4,27 +4,52 @@ import '../pages/news/article.css';
 interface ArticleProps {
   headline: string;
   description: string;
-  date: {
-    day: string;
-    month: string;
-    year: string;
-  };
+  date: string;
   picture: string;
   link: string;
 }
+
+function parseDate(dateString: string) {
+  try {
+    const date = new Date(dateString);
+    
+    // Create formatters
+    const dayFormatter = new Intl.DateTimeFormat('en-US', { day: 'numeric' });
+    const monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'short' });
+    const yearFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric' });
+
+    return {
+      day: dayFormatter.format(date),
+      month: monthFormatter.format(date),
+      year: yearFormatter.format(date)
+    };
+  } catch (error) {
+    console.error('Invalid date format:', dateString);
+    return {
+      day: '--',
+      month: 'Invalid',
+      year: '----'
+    };
+  }
+}
+
+
+
 export default function Article({ headline, description, date, picture, link }: ArticleProps) {
+  const formattedDate = parseDate(date);
+
   return (
     <div className="article flex flex-col md:flex-row md:items-center md:items-start sm:items-start sm:mt-6 sm:mb-6 md:mt-12 md:mb-12 md:space-x-8 space-y-5 md:space-y-0">
       {/* date */}
       <div className="flex sm:flex-row md:flex-col space-x-1.5 md:space-x-0 md:space-y-1" style={{ width: "120px", flexShrink: 0 }}>
         <p className="text-2xl md:text-5xl sm:text-2xl lg:text-5xl font-normal md:font-bold" style={{ color: "#327575" }}>
-          {date.day}
+          {formattedDate.day}
         </p>
         <p className="text-2xl leading-1 font-normal" style={{ color: "#327575" }}>
-          {date.month}
+          {formattedDate.month}
         </p>
         <p className="text-2xl leading-1 font-normal" style={{ color: "#327575" }}>
-          {date.year}
+          {formattedDate.year}
         </p>
       </div>
 
