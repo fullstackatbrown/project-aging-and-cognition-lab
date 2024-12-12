@@ -2,23 +2,21 @@ import { useEffect, useState } from 'react';
 import './article.css';
 import mockNewsData from '../../mock/mock_news_data.json';
 import Article from '../../components/Article';
+import { getNewsData} from '../../cosmicAPI';
 
 // increase the side margins
 
 interface APIObject {
-  object: DataObject;
-  articles: ArticleData[];
-}
-
-interface DataObject {
-  slug: string;
-  title: string;
-  metadata: Metadata;
-}
-
-interface Metadata {
-  heading: string;
-  image: Image;
+  object: {
+    slug: string;
+    title: string;
+    type: string;
+    metadata: {
+      heading: string;
+      image: Image;
+      articles: ArticleData[];
+    };
+  };
 }
 
 interface Image {
@@ -27,33 +25,58 @@ interface Image {
 }
 
 interface ArticleData {
-  headline: string;
-  description: string;
-  date: {
-    day: string;
-    month: string;
-    year: string;
+  id: string;
+  slug: string;
+  title: string;
+  status: string;
+  type: string;
+  content: string;
+  created_at: string;
+  published_at: string;
+  metadata: {
+    headline: string;
+    description: string;
+    date: string;
+    link: string;
+    picture: {
+      url: string;
+      imgix_url: string;
+    };
   };
-  picture: string;
-  link: string;
 }
 
 function NewsPage() {
   const [data, setData] = useState<APIObject | undefined>();
-  function fetchMockData(): APIObject {
-    return mockNewsData as APIObject;
-  }
+  // function fetchMockData(): APIObject {
+  //   return mockNewsData as APIObject;
+  // }
   const articlesPerPage = 5; 
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const jsonData = fetchMockData();
-    setData(jsonData);
-  }, []);
+    async function fetchData() {
+      try {
+        const newsdata = await getNewsData(); // Call the fetchMockData function
+        // const topics =result.object.metadata.topics_array as DataObject[];
+
+        setData(newsdata);
+    
+        console.log(data);
+      } catch (err) {
+        setError("Failed to fetch data.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+    
+   }, []);
 
   /* move to the next page */
   const handleNextPage = () => {
-    if (data && currentPage < Math.ceil(data.articles.length / articlesPerPage)) {
+    if (data && currentPage < Math.ceil(data.object.metadata.articles.length / articlesPerPage)) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
@@ -70,7 +93,7 @@ function NewsPage() {
     if (!data) return [];
     const startIndex = (currentPage - 1) * articlesPerPage;
     const endIndex = startIndex + articlesPerPage;
-    return data.articles.slice(startIndex, endIndex);
+    return data.object.metadata.articles.slice(startIndex, endIndex);
   };
 
   return (
@@ -94,11 +117,11 @@ function NewsPage() {
                     style={{ height: "auto"}}
                   >
                     <Article
-                      headline={article.headline}
-                      description={article.description}
-                      date={article.date}
-                      picture={article.picture}
-                      link={article.link}
+                      headline={article.metadata.headline}
+                      description={article.metadata.description}
+                      date={article.metadata.date}
+                      picture={article.metadata.picture.url}
+                      link={article.metadata.link}
                     />
                   </div>
 
@@ -132,7 +155,7 @@ function NewsPage() {
 
               <button
                 onClick={handleNextPage}
-                disabled={data && currentPage >= Math.ceil(data.articles.length / articlesPerPage)}
+                disabled={data && currentPage >= Math.ceil(data.object.metadata.articles.length / articlesPerPage)}
                 className="p-2 text-white rounded disabled:opacity-50"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#327575" className="size-12">

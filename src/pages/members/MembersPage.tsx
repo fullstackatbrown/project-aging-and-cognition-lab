@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { labMembersMockData } from "../../mock/lab_members_mock_data";
 import { StringLiteral } from "typescript";
 import "./profile.css";
+import { getMemberPageData } from '../../cosmicAPI'; // Ensure this is the correct API import
+
 
 import { Alumni } from "./single_alumni";
 import { Member } from "./single_member";
@@ -23,35 +25,56 @@ interface Metadata {
 }
 
 interface LabMember {
+  metadata: {
   role: string;
   name: string;
   bio: string;
-  photo: string;
+  photo: {
+    imgix_url: string;
+    url: string;
+  }; 
   email: string;
+  };
 }
 
 export default function MembersPage() {
   const [membersData, setMembersData] = useState<LabMember[] | undefined>();
   const [alumniData, setAlumniData] = useState<LabMember[] | undefined>();
+  const [memberData, setMemberData] = useState<APIObject | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  function fetchMembersData(): LabMember[] {
-    return labMembersMockData.object.metadata.members as LabMember[];
-  }
-
-  function fetchAlumniData(): LabMember[] {
-    return labMembersMockData.object.metadata.alumni as LabMember[];
-  }
-
+  
   // may need to change to update when cms is updated
   useEffect(() => {
-    const jsonData = fetchMembersData();
-    setMembersData(jsonData);
-  }, []);
+    const fetchData = async () => {
+      try {
+        const data = await getMemberPageData();  // Call the API
+        console.log('API response:', data);
+            // Log the response to check its structure
+            // if (!Array.isArray(data.objects) || data.objects.length === 0) {
+            //   console.error("No objects found in the API response.");
+            //   return;
+            // }
+          
+            const members =data.object.metadata.members as LabMember[];
+            const alumni =data.object.metadata.alumni as LabMember[];
+        setMembersData(members);
+        setAlumniData(alumni);
+      } catch (error) {
+        console.error('Error fetching research data:', error); // Log errors if any
+      } finally {
+        setLoading(false);                     // Set loading to false
+      }
+    };
 
-  useEffect(() => {
-    const jsonData = fetchAlumniData();
-    setAlumniData(jsonData);
+    fetchData();
   }, []);
+  
+
+  if (loading) {
+    console.log('loading');
+  }
+
 
   const getCurrentMembers = () => {
     if (!membersData) return [];
@@ -107,11 +130,11 @@ export default function MembersPage() {
           {getCurrentMembers().map((member, index) => (
             <Member
               key={index}
-              name={member.name}
-              role={member.role}
-              description={member.bio}
-              photo={member.photo}
-              email={member.email}
+              name={member.metadata.name}
+              role={member.metadata.role}
+              description={member.metadata.bio}
+              photo={member.metadata.photo.url}
+              email={member.metadata.email}
             />
           ))}
         </div>
@@ -123,10 +146,11 @@ export default function MembersPage() {
             {getCurrentAlumni().map((alumni, index) => (
               <Alumni
                 key={index}
-                name={alumni.name}
-                role={alumni.role}
-                description={alumni.bio}
-                photo={alumni.photo}
+                name={alumni.metadata.name}
+                role={alumni.metadata.role}
+                description={alumni.metadata.bio}
+                photo={alumni.metadata.photo.url}
+                email={alumni.metadata.email}
               />
             ))}
           </div>

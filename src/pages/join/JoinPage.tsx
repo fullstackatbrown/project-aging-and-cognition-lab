@@ -1,9 +1,66 @@
 import React from 'react';
-import { mockJoinData } from './join_mock_data';
+import { useEffect, useState } from "react";
+import { getJoinPageData} from '../../cosmicAPI'
+
+interface APIObject {
+  object: DataObject;
+}
+
+interface DataObject {
+  slug: string;
+  title: string;
+  metadata: Metadata;
+}
+
+interface Metadata {
+  text: Text1
+  participant_url: string;
+  researcher_url: string;
+  researcher_image: Image;
+  participant_image: Image;
+}
+
+interface Text1 {
+  slug: string;
+  title: string;
+  metadata: {
+    researcher_text: string;
+    participant_text: string;
+  }
+}
+
+interface Image {
+  url: string;
+  imgix_url: string;
+}
+
+
 
 export default function JoinResearcherPage() {
   const gradient = require('../../assets/curved_gradient.png');
+  const [data, setData] = useState<APIObject>();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    async function fetchCosmicData() {
+      try {
+        const data = await getJoinPageData(); // Call the fetchMockData function
+
+        setData(data);
+        console.log(data);
+      } catch (err) {
+        setError("Failed to fetch data.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCosmicData();
+  }, []);
+  if (data){
   return (
+    
     <div
       className={'text-center min-h-screen'}
       style={{
@@ -24,19 +81,19 @@ export default function JoinResearcherPage() {
             className="text-4xl font-semibold"
             style={{color: 'var(--dark-teal)'}}>As a researcher</h2>
           <img
-            src={mockJoinData.object.metadata.images.researcher_url}
+            src={data.object.metadata.researcher_image.url}
             alt="Join us as a Researcher!"
             className="mt-4 mb-4 rounded-xl w-full"
           />
           <p className="text-left text-black text-sm mb-6">
-            {mockJoinData.object.metadata.text.researcher_text.split('\n').map((line, index) => (
+            {data.object.metadata.text.metadata.researcher_text.split('\n').map((line, index) => (
               <React.Fragment key={index}>
                 {line}
                 <br />
               </React.Fragment>
             ))}
           </p>
-          <a href={mockJoinData.object.metadata.urls.researcher_url} target="_blank" rel="noreferrer">
+          <a href={data.object.metadata.researcher_url} target="_blank" rel="noreferrer">
             <button 
               className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition mb-6"
               style={{ border: '2px solid var(--base-teal)' }}>Join as a researcher!
@@ -50,19 +107,19 @@ export default function JoinResearcherPage() {
             className="text-4xl font-semibold"
             style={{color: 'var(--dark-teal)'}}>As a participant</h2>
           <img
-            src={mockJoinData.object.metadata.images.participant_url}
+            src={data.object.metadata.participant_image.url}
             alt="Join us as a Participant!"
             className="mt-4 mb-4 rounded-xl w-full"
           />
           <p className="text-left text-black text-sm mb-6">
-            {mockJoinData.object.metadata.text.participant_text.split('\n').map((line, index) => (
+            {data.object.metadata.text.metadata.participant_text.split('\n').map((line, index) => (
               <React.Fragment key={index}>
                 {line}
                 <br />
               </React.Fragment>
             ))}
           </p>
-          <a href={mockJoinData.object.metadata.urls.participant_url} target="_blank" rel="noreferrer">
+          <a href={data.object.metadata.participant_url} target="_blank" rel="noreferrer">
             <button 
               className="px-6 py-2 bg-white text-black text-sm rounded-full shadow-md hover:bg-teal-100 transition mb-6"
               style={{ border: '2px solid var(--base-teal)' }}>Join as a participant!
@@ -73,3 +130,6 @@ export default function JoinResearcherPage() {
     </div>
   );
 }
+return null;
+}
+

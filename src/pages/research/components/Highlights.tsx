@@ -21,7 +21,7 @@ export default function Highlights({ publications }: HighlightsProps) {
           <div className="w-48 h-48 flex-shrink-0 py-3">
             <img
               className="object-cover rounded-lg"
-              src={pub.metadata.image} // Assuming you want to use the publication image
+              src={pub.metadata.image.url} // Assuming you want to use the publication image
               alt={pub.metadata.title}
             />
           </div>

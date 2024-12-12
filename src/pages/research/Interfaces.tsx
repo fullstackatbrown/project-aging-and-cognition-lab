@@ -28,8 +28,11 @@ export interface Publication {
 export interface PublicationMetadata {
   title: string;
   description: string;
-  image: string;
-  isHighlight: boolean;
+  image: {
+    imgix_url: string;
+    url: string;
+  }; 
+  ishighlight: string;
   link: string;
 }
 

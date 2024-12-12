@@ -1,17 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
-import { mockResearchData } from "../../mock/research_mock";
+// import { mockResearchData } from "../../mock/research_mock";
 import ResearchTopic from "./components/ResearchTopic";
 import Highlights from "./components/Highlights";
 import More from "./components/More";
-import { APIObject, Publication } from "./Interfaces";
+import { DataObject, Publication } from "./Interfaces";
 import { Search } from "lucide-react"; // Import the Search icon from lucide-react
+import { getPublicationData} from '../../cosmicAPI'; // Ensure this is the correct API import
+
 
 // Define the prop types for PopupOverlay
+
+
 interface PopupOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   publications: Publication[];
 }
+
+
 
 function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
   // Prevent background scrolling when the popup is open
@@ -88,12 +94,12 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
 }
 
 // Move fetchMockData outside component and above it
-async function fetchMockData(): Promise<APIObject> {
-  return mockResearchData;
-}
+// async function fetchMockData(): Promise<APIObject> {
+//   return mockResearchData;
+// }
 
 export default function ResearchPage() {
-  const [data, setData] = useState<APIObject | null>(null);
+  const [data, setData] = useState<DataObject[] | undefined>()
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -126,8 +132,13 @@ export default function ResearchPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await fetchMockData(); // Call the fetchMockData function
-        setData(result);
+        const result = await getPublicationData(); // Call the fetchMockData function
+        const topics =result.object.metadata.topics_array as DataObject[];
+
+        setData(topics);
+        console.log(result);
+        console.log(topics);
+        console.log(data);
       } catch (err) {
         setError("Failed to fetch data.");
       } finally {
@@ -148,6 +159,8 @@ export default function ResearchPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  
+ 
   // Initialize measurements after data is loaded
   useEffect(() => {
     const handleScroll = () => {
@@ -179,7 +192,7 @@ export default function ResearchPage() {
 
   const handleSearch = () => {
     const allPublications =
-      data?.object.flatMap((topic) => topic.metadata.publications) || [];
+      data?.flatMap((topic) => topic.metadata.publications) || [];
     const filtered = allPublications.filter((pub) =>
       pub.metadata.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -194,6 +207,7 @@ export default function ResearchPage() {
   if (loading) return <div className="p-8">Loading...</div>;
   if (error) return <div className="p-8 text-red-500">{error}</div>;
   if (!data) return null;
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -271,7 +285,7 @@ export default function ResearchPage() {
                 </button>
 
                 {/* Navigation Items */}
-                {data.object.map((topic, index) => (
+                {data.map((topic, index) => (
                   <button
                     key={topic.slug}
                     onClick={() =>
@@ -297,15 +311,21 @@ export default function ResearchPage() {
           {/* Main Content */}
           <div ref={mainContentRef} className="flex-1 min-w-0">
             <div className="space-y-12">
-              {data.object.map((topic, index) => {
-                const highlights = topic.metadata.publications.filter(
-                  (pub) => pub.metadata.isHighlight
-                );
-                const more = topic.metadata.publications.filter(
-                  (pub) => !pub.metadata.isHighlight
-                );
+              {data?.map((topic, index) => {
+                topic.metadata.publications.forEach((pub, idx) => {
+                  console.log(`Publication ${idx + 1}:`, pub);
+                });
 
-                if (topic.slug === "More") {
+                const highlights = topic.metadata.publications.filter(
+                  (pub) =>pub.metadata?.ishighlight === 'true'
+                );
+                
+                const more = topic.metadata.publications.filter(
+                  (pub) => pub.metadata?.ishighlight === 'false'
+                );
+                
+
+                if (topic.slug === "more") {
                   return (
                     <div key={topic.slug} ref={moreSectionRef} className="py-8">
                       <div className="px-4 mb-6">
