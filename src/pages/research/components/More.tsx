@@ -3,15 +3,20 @@ import { MoreProps } from "../Interfaces";
 
 export default function More({ publications }: MoreProps) {
   return (
-    <div>
+    <div className="mt-[-20px]">
       <div>
-        <h3 className="text-2xl font-semibold mb-6">More</h3>
+        <h3
+          className="text-[28px] italic font-semibold mb-3"
+          style={{ color: "var(--dark-teal)" }}
+        >
+          More on this Topic
+        </h3>
       </div>
       <div
-        className="rounded-lg p-8"
+        className="rounded-lg p-6"
         style={{ backgroundColor: "var(--base-teal)" }}
       >
-        <div className="space-y-4">
+        <div className="space-y-6">
           {publications.map((pub) => (
             <a
               key={pub.slug}
