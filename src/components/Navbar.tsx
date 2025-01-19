@@ -45,31 +45,31 @@ export default function Navbar() {
         />
       </header>
 
-      <nav className="flex flex-row justify-end items-center bg-[#F1DDCE] my-5 py-4 px-5">
+      <nav className="flex flex-row justify-end items-center bg-[#F1DDCE] my-5 py-3 px-5">
         <button
           onClick={() => handleNavigation("/")}
-          className="flex px-4 py-2 text-black rounded-md hover:bg-[#d6beab] transition-colors mr-4"
+          className="flex px-4 py-3 text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors mr-4"
         >
           Home
         </button>
 
         <button
           onClick={() => handleNavigation("/research")}
-          className="flex px-4 py-2 text-black rounded-md hover:bg-[#d6beab] transition-colors mr-4"
+          className="flex px-4 py-3 text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors mr-4"
         >
           Research & Publications
         </button>
 
         <button
           onClick={() => handleNavigation("/news")}
-          className="flex px-4 py-2 text-black rounded-md hover:bg-[#d6beab] transition-colors mr-4"
+          className="flex px-4 py-3 text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors mr-4"
         >
           News
         </button>
 
         <button
           onClick={() => handleNavigation("/members")}
-          className="flex px-4 py-2 text-black rounded-md hover:bg-[#d6beab] transition-colors mr-4"
+          className="flex px-4 py-3 text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors mr-4"
         >
           Lab Members
         </button>
@@ -81,7 +81,7 @@ export default function Navbar() {
         >
           Contact
         </button> */}
-        <button className="flex text-black rounded-md hover:bg-[#d6beab] transition-colors">
+        <button className="flex text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors">
           {/* <a href="join">
             <Button
               text="Join Us"
@@ -89,7 +89,7 @@ export default function Navbar() {
             />
           </a> */}
         </button>
-        <button className="flex px-4 py-2 text-black rounded-md hover:bg-[#d6beab] transition-colors">
+        <button className="flex px-4 py-3 text-black rounded-md bg-[#f6e9e0] hover:bg-[#d6beab] transition-colors">
           <a href="join">Join Us</a>
         </button>
       </nav>
