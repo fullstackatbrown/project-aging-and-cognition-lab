@@ -1,5 +1,5 @@
-import React from 'react';
-import '../pages/news/article.css';
+import React from "react";
+import "../pages/news/article.css";
 
 interface ArticleProps {
   headline: string;
@@ -12,43 +12,59 @@ interface ArticleProps {
 function parseDate(dateString: string) {
   try {
     const date = new Date(dateString);
-    
+
     // Create formatters
-    const dayFormatter = new Intl.DateTimeFormat('en-US', { day: 'numeric' });
-    const monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'short' });
-    const yearFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric' });
+    const dayFormatter = new Intl.DateTimeFormat("en-US", { day: "numeric" });
+    const monthFormatter = new Intl.DateTimeFormat("en-US", { month: "short" });
+    const yearFormatter = new Intl.DateTimeFormat("en-US", { year: "numeric" });
 
     return {
       day: dayFormatter.format(date),
       month: monthFormatter.format(date),
-      year: yearFormatter.format(date)
+      year: yearFormatter.format(date),
     };
   } catch (error) {
-    console.error('Invalid date format:', dateString);
+    console.error("Invalid date format:", dateString);
     return {
-      day: '--',
-      month: 'Invalid',
-      year: '----'
+      day: "--",
+      month: "Invalid",
+      year: "----",
     };
   }
 }
 
-
-
-export default function Article({ headline, description, date, picture, link }: ArticleProps) {
+export default function Article({
+  headline,
+  description,
+  date,
+  picture,
+  link,
+}: ArticleProps) {
   const formattedDate = parseDate(date);
 
   return (
-    <div className="article flex flex-col md:flex-row md:items-center md:items-start sm:items-start sm:mt-6 sm:mb-6 md:mt-12 md:mb-12 md:space-x-8 space-y-5 md:space-y-0">
+    <div className="article flex flex-col md:flex-row md:items-center md:items-start sm:items-start sm:my-3 md:my-5 md:space-x-8 space-y-5 md:space-y-0">
       {/* date */}
-      <div className="flex sm:flex-row md:flex-col space-x-1.5 md:space-x-0 md:space-y-1" style={{ width: "120px", flexShrink: 0 }}>
-        <p className="text-2xl md:text-5xl sm:text-2xl lg:text-5xl font-normal md:font-bold" style={{ color: "#327575" }}>
+      <div
+        className="flex sm:flex-row md:flex-col space-x-1.5 md:space-x-0 md:space-y-1"
+        style={{ width: "120px", flexShrink: 0 }}
+      >
+        <p
+          className="text-2xl md:text-5xl sm:text-2xl lg:text-5xl font-normal md:font-bold"
+          style={{ color: "#327575" }}
+        >
           {formattedDate.day}
         </p>
-        <p className="text-2xl leading-1 font-normal" style={{ color: "#327575" }}>
+        <p
+          className="text-2xl leading-1 font-normal"
+          style={{ color: "#327575" }}
+        >
           {formattedDate.month}
         </p>
-        <p className="text-2xl leading-1 font-normal" style={{ color: "#327575" }}>
+        <p
+          className="text-2xl leading-1 font-normal"
+          style={{ color: "#327575" }}
+        >
           {formattedDate.year}
         </p>
       </div>
@@ -56,7 +72,13 @@ export default function Article({ headline, description, date, picture, link }: 
       {/* image */}
       <div
         className="flex flex-shrink sm:flex-start align-middle flex-center"
-        style={{ width: "159px", height: "139px", flexShrink: 0, display: "flex", alignItems: "center" }}
+        style={{
+          width: "159px",
+          height: "139px",
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+        }}
       >
         <img
           src={picture}
@@ -73,7 +95,7 @@ export default function Article({ headline, description, date, picture, link }: 
       {/* headline and description */}
       <div className="text-container align-middle">
         <div className="flex flex-col space-x-0">
-          <div className="flex flex-col space-y-3 md:space-y-6">
+          <div className="flex flex-col space-y-1 md:space-y-1">
             <h2 className="text-xl md:text-2xl" style={{ color: "#51AAAB" }}>
               {headline}
             </h2>

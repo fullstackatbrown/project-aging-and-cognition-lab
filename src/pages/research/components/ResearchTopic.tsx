@@ -5,8 +5,8 @@ export default function ResearchTopic({ title, metadata }: ResearchTopicProps) {
   return (
     <div className="rounded-lg">
       <h2
-        className="text-center text-2xl font-semibold"
-        style={{ color: "var(--dark-teal)" }}
+        className="text-left text-3xl font-semibold mb-5"
+        style={{ color: "black" }}
       >
         {title}
       </h2>
