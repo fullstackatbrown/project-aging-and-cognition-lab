@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import './article.css';
-import mockNewsData from '../../mock/mock_news_data.json';
-import Article from '../../components/Article';
-import { getNewsData} from '../../cosmicAPI';
+import { useEffect, useState } from "react";
+import "./article.css";
+import mockNewsData from "../../mock/mock_news_data.json";
+import Article from "../../components/Article";
+import { getNewsData } from "../../cosmicAPI";
 
 // increase the side margins
 
@@ -50,7 +50,7 @@ function NewsPage() {
   // function fetchMockData(): APIObject {
   //   return mockNewsData as APIObject;
   // }
-  const articlesPerPage = 5; 
+  const articlesPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,7 +62,7 @@ function NewsPage() {
         // const topics =result.object.metadata.topics_array as DataObject[];
 
         setData(newsdata);
-    
+
         console.log(data);
       } catch (err) {
         setError("Failed to fetch data.");
@@ -71,12 +71,15 @@ function NewsPage() {
       }
     }
     fetchData();
-    
-   }, []);
+  }, []);
 
   /* move to the next page */
   const handleNextPage = () => {
-    if (data && currentPage < Math.ceil(data.object.metadata.articles.length / articlesPerPage)) {
+    if (
+      data &&
+      currentPage <
+        Math.ceil(data.object.metadata.articles.length / articlesPerPage)
+    ) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
@@ -99,7 +102,12 @@ function NewsPage() {
   return (
     <div className="flex flex-col my-10 mx-10 md:mx-20 lg:mx-32">
       <div>
-        <h1 className="text-4xl md:text-5xl mx-4 md:mx-10 mb-6 mt-6 md:mb-8 md:mt-12 font-normal" style={{ color: "#327575" }}>News</h1>
+        <h1
+          className="text-5xl mx-4 mb-[-10px] mt-6 font-bold"
+          style={{ color: "#327575" }}
+        >
+          News
+        </h1>
       </div>
       <div>
         {data ? (
@@ -114,7 +122,7 @@ function NewsPage() {
                 >
                   <div
                     className="flex items-center justify-between w-full"
-                    style={{ height: "auto"}}
+                    style={{ height: "auto" }}
                   >
                     <Article
                       headline={article.metadata.headline}
@@ -148,19 +156,43 @@ function NewsPage() {
                 disabled={currentPage === 1}
                 className="p-2 text-white rounded disabled:opacity-50"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#327575" className="size-12">
-                  <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="#327575"
+                  className="size-12"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </button>
 
               <button
                 onClick={handleNextPage}
-                disabled={data && currentPage >= Math.ceil(data.object.metadata.articles.length / articlesPerPage)}
+                disabled={
+                  data &&
+                  currentPage >=
+                    Math.ceil(
+                      data.object.metadata.articles.length / articlesPerPage
+                    )
+                }
                 className="p-2 text-white rounded disabled:opacity-50"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#327575" className="size-12">
-                <path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="#327575"
+                  className="size-12"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
               </button>
             </div>
           </>
