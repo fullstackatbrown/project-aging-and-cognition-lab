@@ -5,19 +5,15 @@ import Highlights from "./components/Highlights";
 import More from "./components/More";
 import { DataObject, Publication } from "./Interfaces";
 import { Search } from "lucide-react"; // Import the Search icon from lucide-react
-import { getPublicationData} from '../../cosmicAPI'; // Ensure this is the correct API import
-
+import { getPublicationData } from "../../cosmicAPI"; // Ensure this is the correct API import
 
 // Define the prop types for PopupOverlay
-
 
 interface PopupOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   publications: Publication[];
 }
-
-
 
 function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
   // Prevent background scrolling when the popup is open
@@ -99,7 +95,7 @@ function PopupOverlay({ isOpen, onClose, publications }: PopupOverlayProps) {
 // }
 
 export default function ResearchPage() {
-  const [data, setData] = useState<DataObject[] | undefined>()
+  const [data, setData] = useState<DataObject[] | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -121,19 +117,11 @@ export default function ResearchPage() {
   const [isFixed, setIsFixed] = useState(false);
   const [sidebarTop, setSidebarTop] = useState(0);
 
-  const cardStyle = {
-    borderTop: "1px solid #FFFFFF",
-    borderLeft: "1px solid #FFFFFF",
-    borderRight: "1px solid #E3C6B1",
-    borderBottom: "1px solid #E3C6B1",
-    boxShadow: "2px 2px 4px rgba(227, 198, 177, 0.75)",
-  };
-
   useEffect(() => {
     async function fetchData() {
       try {
         const result = await getPublicationData(); // Call the fetchMockData function
-        const topics =result.object.metadata.topics_array as DataObject[];
+        const topics = result.object.metadata.topics_array as DataObject[];
 
         setData(topics);
         console.log(result);
@@ -159,8 +147,6 @@ export default function ResearchPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  
- 
   // Initialize measurements after data is loaded
   useEffect(() => {
     const handleScroll = () => {
@@ -208,7 +194,6 @@ export default function ResearchPage() {
   if (error) return <div className="p-8 text-red-500">{error}</div>;
   if (!data) return null;
 
-
   return (
     <div className="min-h-screen bg-white">
       <PopupOverlay
@@ -231,7 +216,7 @@ export default function ResearchPage() {
             {/* Sidebar Content */}
             <div
               ref={sidebarRef}
-              className="w-72"
+              className="w-72 pl-5"
               style={{
                 position: isFixed ? "fixed" : "static",
                 top: isFixed ? "20px" : "auto",
@@ -270,20 +255,11 @@ export default function ResearchPage() {
               </div>
 
               {/* Navigation Section */}
-              <div className="space-y-2">
+              <div className="space-y-2 flex flex-col items-center">
                 {/* Current Research Header */}
-                <button
-                  className="w-full bg-white shadow-md p-4 text-left hover:bg-gray-50 transition-colors border border-gray-100"
-                  style={{ ...cardStyle, backgroundColor: "white" }}
-                >
-                  <span
-                    style={{ color: "var(--base-teal)" }}
-                    className="text-lg"
-                  >
-                    Current Research
-                  </span>
-                </button>
-
+                <h3 className="text-[#327475] font-semibold italic mb-[0px]">
+                  Current Research
+                </h3>
                 {/* Navigation Items */}
                 {data.map((topic, index) => (
                   <button
@@ -293,8 +269,7 @@ export default function ResearchPage() {
                         ? scrollToTopic(-1)
                         : scrollToTopic(index)
                     }
-                    className="w-full bg-white shadow-md p-4 text-left hover:bg-gray-50 transition-colors border border-gray-100"
-                    style={{ ...cardStyle, backgroundColor: "white" }}
+                    className="w-full rounded-lg bg-gray-100 p-4 text-left hover:bg-gray-200 transition-colors border-gray-100"
                   >
                     <span
                       style={{ color: "var(--base-teal)" }}
@@ -309,7 +284,7 @@ export default function ResearchPage() {
           </div>
 
           {/* Main Content */}
-          <div ref={mainContentRef} className="flex-1 min-w-0">
+          <div ref={mainContentRef} className="">
             <div className="space-y-12">
               {data?.map((topic, index) => {
                 topic.metadata.publications.forEach((pub, idx) => {
@@ -317,32 +292,31 @@ export default function ResearchPage() {
                 });
 
                 const highlights = topic.metadata.publications.filter(
-                  (pub) =>pub.metadata?.ishighlight === 'true'
+                  (pub) => pub.metadata?.ishighlight === "true"
                 );
-                
+
                 const more = topic.metadata.publications.filter(
-                  (pub) => pub.metadata?.ishighlight === 'false'
+                  (pub) => pub.metadata?.ishighlight === "false"
                 );
-                
 
                 if (topic.slug === "more") {
                   return (
-                    <div key={topic.slug} ref={moreSectionRef} className="py-8">
+                    <div key={topic.slug} ref={moreSectionRef} className="pb-8">
                       <div className="px-4 mb-6">
                         <div>
                           <div>
                             <h3
-                              className="text-center text-2xl font-semibold mb-6"
-                              style={{ color: "var(--dark-teal)" }}
+                              className="text-center text-3xl font-semibold mb-4"
+                              style={{ color: "black" }}
                             >
                               Other Publications
                             </h3>
                           </div>
                           <div
-                            className="rounded-lg p-8"
+                            className="rounded-lg p-6"
                             style={{ backgroundColor: "var(--base-teal)" }}
                           >
-                            <div className="space-y-4">
+                            <div className="space-y-6">
                               {more.map((pub) => (
                                 <a
                                   key={pub.slug}
