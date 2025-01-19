@@ -27,7 +27,7 @@
 .alumni {
   width: 20vw;
   height: 325px;
-  background-color: #b2acac;
+  background-color: #f1ddce;
   margin-left: 5px;
   display: flex;
   flex-direction: row;
@@ -41,8 +41,8 @@
   width: 18vw;
   height: auto;
   padding: 20px;
-  background-color: #327575;
-  border-radius: 30px;
+  background-color: #f1ddce;
+  border-radius: 15px;
   margin-top: 35px;
 }
 
@@ -59,7 +59,7 @@
   height: auto;
   padding: 20px;
   background-color: #f1ddce;
-  border-radius: 30px;
+  border-radius: 15px;
   margin-top: 30px;
 }
 
@@ -71,7 +71,7 @@
 .photo {
   width: 12vw;
   height: auto;
-  border-radius: 20px;
+  border-radius: 8px;
 }
 
 .lab-members {
@@ -87,7 +87,7 @@
 .alumni-section {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .bold {
